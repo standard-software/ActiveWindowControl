@@ -161,7 +161,7 @@ namespace ActiveWindowControl {
 
     private void aboutActiveWindowControlToolStripMenuItem_Click(object sender, EventArgs e) {
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.1.0",
+        "ActiveWindowControl\nVersion:0.1.1",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
