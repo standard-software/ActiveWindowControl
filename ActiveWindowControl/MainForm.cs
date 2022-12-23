@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ActiveWindowControl {
   using static WinAPI;
@@ -79,7 +71,6 @@ namespace ActiveWindowControl {
         CreateSizeMenuItem(menuItemSize);
       }
 
-
       {
         toPrevMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         toNextMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
@@ -89,7 +80,6 @@ namespace ActiveWindowControl {
         rootToPrevMonitorMenuItem.Click += samePositionPrevMonitorMenuItem_Click;
         rootToNextMonitorMenuItem.Click += samePositionNextMonitorMenuItem_Click;
       }
-
 
     }
 
@@ -256,11 +246,6 @@ namespace ActiveWindowControl {
       } else {
         this.contextMenuStrip1.Tag = null;
       }
-      GetPrimaryDisplayInformation();
-      System.Diagnostics.Debug.WriteLine("");
-      //GetFormDisplayInformation();
-      System.Diagnostics.Debug.WriteLine("");
-      GetAllDisplayInformation();
     }
 
     private int GetTargetScreenIndex(IntPtr hwnd) {
@@ -314,12 +299,6 @@ namespace ActiveWindowControl {
         (r.Width * size / 100),
         r.Height,
         1
-      );
-      Console.WriteLine("{0} {1} {2} {3}",
-        r.Left,
-        r.Top,
-        (r.Width * size / 100),
-        r.Height
       );
       ActiveWindow(foregroundWinHandle);
     }
@@ -457,7 +436,6 @@ namespace ActiveWindowControl {
       Screen currentScreen = Screen.AllScreens[currentScreenIndex];
       double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left) 
         / (double)(currentScreen.WorkingArea.Width);
-      Console.WriteLine("{0} {1} {2} {3}", currentScreen.WorkingArea.Left , rect.left , currentScreen.WorkingArea.Width, percentLeft);
 
       double percentTop = (double)(rect.top - currentScreen.WorkingArea.Top)
         / (double)(currentScreen.WorkingArea.Height);
@@ -466,15 +444,7 @@ namespace ActiveWindowControl {
       double percentHeight = (double)(rect.bottom - rect.top)
         / (double)(currentScreen.WorkingArea.Height);
 
-      Console.WriteLine("{0} {1} {2} {3}", percentLeft, percentTop, percentWidth, percentHeight);
-
       var r = prevScreen.WorkingArea;
-      Console.WriteLine("{0} {1} {2} {3}",
-        (int)(r.Left * percentLeft),
-        (int)(r.Top * percentTop),
-        (int)(r.Width * percentWidth),
-        (int)(r.Height * percentHeight)
-       );
       MoveWindow(
         foregroundWinHandle,
         r.Left + (int)(r.Width * percentLeft),
@@ -541,7 +511,6 @@ namespace ActiveWindowControl {
       samePositionNextMonitorMenuItem_Click(sender, e);
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
     }
-
 
   }
 }

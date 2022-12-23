@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ActiveWindowControl {
@@ -163,57 +159,6 @@ namespace ActiveWindowControl {
     private const uint SPI_SETFOREGROUNDLOCKTIMEOUT = 0x2001;
     private const uint SPIF_UPDATEINIFILE = 0x01;
     private const uint SPIF_SENDCHANGE = 0x02;
-
-
-
-    /// <summary>
-    /// プライマリディスプレイの情報取得
-    /// </summary>
-    public static void GetPrimaryDisplayInformation() {
-      try {
-        System.Diagnostics.Debug.WriteLine("●プライマリディスプレイの情報取得");
-        System.Diagnostics.Debug.WriteLine("デバイス名 : " + System.Windows.Forms.Screen.PrimaryScreen.DeviceName);
-        System.Diagnostics.Debug.WriteLine("ディスプレイの位置 : X=" + System.Windows.Forms.Screen.PrimaryScreen.Bounds.X + " - Y=" + System.Windows.Forms.Screen.PrimaryScreen.Bounds.Y);
-        System.Diagnostics.Debug.WriteLine("ディスプレイのサイズ : 幅=" + System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width + " - 高さ=" + System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
-        System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域の位置 : X" + System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.X + " - Y=" + System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Y);
-        System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域のサイズ : 幅" + System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width + " - 高さ=" + System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height);
-      } catch {
-      }
-    }
-
-    ///// <summary>
-    ///// フォームがあるディスプレイの情報取得
-    ///// </summary>
-    //public void GetFormDisplayInformation() {
-    //  try {
-    //    System.Diagnostics.Debug.WriteLine("●フォームがあるディスプレイの情報取得");
-    //    System.Diagnostics.Debug.WriteLine("デバイス名 : " + System.Windows.Forms.Screen.FromControl(this).DeviceName);
-    //    System.Diagnostics.Debug.WriteLine("ディスプレイの位置 : X=" + System.Windows.Forms.Screen.FromControl(this).Bounds.X + " - Y=" + System.Windows.Forms.Screen.FromControl(this).Bounds.Y);
-    //    System.Diagnostics.Debug.WriteLine("ディスプレイのサイズ : 幅=" + System.Windows.Forms.Screen.FromControl(this).Bounds.Width + " - 高さ=" + System.Windows.Forms.Screen.FromControl(this).Bounds.Height);
-    //    System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域の位置 : X" + System.Windows.Forms.Screen.FromControl(this).WorkingArea.X + " - Y=" + System.Windows.Forms.Screen.FromControl(this).WorkingArea.Y);
-    //    System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域のサイズ : 幅" + System.Windows.Forms.Screen.FromControl(this).WorkingArea.Width + " - 高さ=" + System.Windows.Forms.Screen.FromControl(this).WorkingArea.Height);
-    //  } catch {
-    //  }
-    //}
-
-    /// <summary>
-    /// 全てのディスプレイの情報取得
-    /// </summary>
-    public static void GetAllDisplayInformation() {
-      try {
-        System.Diagnostics.Debug.WriteLine("●全てのディスプレイの情報取得");
-        foreach (System.Windows.Forms.Screen screen_data in System.Windows.Forms.Screen.AllScreens) {
-          System.Diagnostics.Debug.WriteLine("デバイス名 : " + screen_data.DeviceName);
-          System.Diagnostics.Debug.WriteLine("ディスプレイの位置 : X=" + screen_data.Bounds.X + " - Y=" + screen_data.Bounds.Y);
-          System.Diagnostics.Debug.WriteLine("ディスプレイのサイズ : 幅=" + screen_data.Bounds.Width + " - 高さ=" + screen_data.Bounds.Height);
-          System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域の位置 : X" + screen_data.WorkingArea.X + " - Y=" + screen_data.WorkingArea.Y);
-          System.Diagnostics.Debug.WriteLine("ディスプレイの作業領域のサイズ : 幅" + screen_data.WorkingArea.Width + " - 高さ=" + screen_data.WorkingArea.Height);
-          System.Diagnostics.Debug.WriteLine("-----");
-        }
-      } catch {
-      }
-    }
-
 
   }
 }
