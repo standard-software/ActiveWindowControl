@@ -27,6 +27,8 @@ namespace ActiveWindowControl {
         rightSideMenuItem.Tag = 50;
         rightSideMenuItem.Click += rightSideMenuItem_Click;
 
+        size90CenterMenuItem.Tag = 90;
+        size90CenterMenuItem.Click += centerMenuItem_Click;
         size75CenterMenuItem.Tag = 75;
         size75CenterMenuItem.Click += centerMenuItem_Click;
       }
@@ -155,21 +157,45 @@ namespace ActiveWindowControl {
       CreateLeftRightTopBottomMenuItem(sizeMenuItem);
     }
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
-      this.Close();
-    }
-
-    private void aboutActiveWindowControlToolStripMenuItem_Click(object sender, EventArgs e) {
+    private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
+      timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.1.1",
+        "ActiveWindowControl\nVersion:0.2.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
       );
+      timer1.Enabled = true;
+    }
+
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+      notifyIcon1.Visible= false;
+      this.Close();
+    }
+
+    private void notifyIcon1_Click(object sender, EventArgs e) {
+      this.contextMenuStrip2.Show(
+        Cursor.Position,
+        ToolStripDropDownDirection.AboveRight
+      );
+    }
+
+    private void tasktrayRestartMenuItem_Click(object sender, EventArgs e) {
+      notifyIcon1.Visible = false;
+      Application.Restart();
+    }
+
+    private void tasktrayExitMenuItem_Click(object sender, EventArgs e) {
+      notifyIcon1.Visible = false;
+      this.Close();
     }
 
     private void timer1_Tick(object sender, EventArgs e) {
       IntPtr _foregroundWinHandle = WinAPI.GetForegroundWindow();
+
+      if (!IsThickFrame(_foregroundWinHandle)) { return; }
+
+      this.WindowState = FormWindowState.Normal;
 
       if (foregroundWinHandle != _foregroundWinHandle) {
         //this.contextMenuStrip1.Tag = null;
@@ -183,6 +209,7 @@ namespace ActiveWindowControl {
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
+      // Console.WriteLine("{0} {1}", rect.top, rect.left);
 
       //this.Top = rect.top;
       //this.Left = rect.left;
@@ -212,6 +239,7 @@ namespace ActiveWindowControl {
         ) / 2;
       }
 
+      ShowWindow(this.Handle, SW_RESTORE);
       SetWindowPos(this.Handle, HWND_TOP, 0, 0, 0, 0,
           SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER);
 
@@ -511,6 +539,5 @@ namespace ActiveWindowControl {
       samePositionNextMonitorMenuItem_Click(sender, e);
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
     }
-
   }
 }

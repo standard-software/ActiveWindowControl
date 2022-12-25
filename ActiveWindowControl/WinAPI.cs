@@ -248,5 +248,33 @@ namespace ActiveWindowControl {
     IntPtr hWnd,
     [In] ref WINDOWPLACEMENT lpwndpl);
 
+
+    [DllImport("user32", CharSet = CharSet.Auto, EntryPoint = "GetWindowLong")]
+    public static extern IntPtr GetWindowLongPtr32(IntPtr hWnd, int nIndex);
+
+    [DllImport("user32", CharSet = CharSet.Auto, EntryPoint = "GetWindowLongPtr")]
+    public static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
+
+    public static bool IsTopMost(IntPtr hWnd) {
+      const int GWL_EXSTYLE = -20;
+      int WS_EX_TOPMOST = 8;
+      if (IntPtr.Size == 4) {
+        return (GetWindowLongPtr32(hWnd, GWL_EXSTYLE).ToInt32() & WS_EX_TOPMOST) != 0;
+      } else {
+        return (GetWindowLongPtr64(hWnd, GWL_EXSTYLE).ToInt64() & (long)WS_EX_TOPMOST) != 0L;
+      }
+    }
+
+    public static bool IsThickFrame(IntPtr hWnd) {
+      const int GWL_STYLE = -16;
+      int WS_THICKFRAME = 0x00040000;
+      if (IntPtr.Size == 4) {
+        return (GetWindowLongPtr32(hWnd, GWL_STYLE).ToInt32() & WS_THICKFRAME) != 0;
+      } else {
+        return (GetWindowLongPtr64(hWnd, GWL_STYLE).ToInt64() & (long)WS_THICKFRAME) != 0L;
+      }
+    }
+
+
   }
 }
