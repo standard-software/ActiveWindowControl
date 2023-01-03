@@ -195,8 +195,6 @@ namespace ActiveWindowControl {
 
       if (!IsThickFrame(_foregroundWinHandle)) { return; }
 
-      this.WindowState = FormWindowState.Normal;
-
       if (foregroundWinHandle != _foregroundWinHandle) {
         //this.contextMenuStrip1.Tag = null;
         if (this.Handle == _foregroundWinHandle) {
@@ -204,12 +202,21 @@ namespace ActiveWindowControl {
         }
         foregroundWinHandle = _foregroundWinHandle;
 
+        this.Visible = false;
         SetWindowLong(this.Handle, GWL.HWNDPARENT, (UInt32)foregroundWinHandle);
+        this.Visible = true;
+        ActiveWindow(foregroundWinHandle);
       }
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
-      // Console.WriteLine("{0} {1}", rect.top, rect.left);
+
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        rect.top = rect.top + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
+        rect.bottom = rect.bottom + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
+      }
+
+       //Console.WriteLine("{0} {1} {2}", foregroundWinHandle, rect.top, rect.left);
 
       //this.Top = rect.top;
       //this.Left = rect.left;
@@ -228,7 +235,7 @@ namespace ActiveWindowControl {
         int width = GetSystemMetrics(SystemMetric.SM_CXSIZE) + 10;
         int right = rect.right;
         right -= 6;
-        this.Top = rect.top;
+        this.Top = rect.top + 1;
         this.Width = width;
         // this.Left = right - width * 2;
         // this.Left = right - width * 3;
@@ -239,9 +246,11 @@ namespace ActiveWindowControl {
         ) / 2;
       }
 
-      ShowWindow(this.Handle, SW_RESTORE);
-      SetWindowPos(this.Handle, HWND_TOP, 0, 0, 0, 0,
-          SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER);
+      if (this.Bounds.Contains(Cursor.Position)) {
+        this.Opacity = 0.8;
+      } else {
+        this.Opacity = 0.3;
+      }
 
     }
 
@@ -538,6 +547,14 @@ namespace ActiveWindowControl {
     private void maximizeNextMonitorMenuItem_Click(object sender, EventArgs e) {
       samePositionNextMonitorMenuItem_Click(sender, e);
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
+    }
+
+    private void MainForm_MouseEnter(object sender, EventArgs e) {
+      //this.Opacity = 100;
+    }
+
+    private void MainForm_MouseLeave(object sender, EventArgs e) {
+      //this.Opacity = 50;
     }
   }
 }

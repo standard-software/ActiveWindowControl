@@ -71,6 +71,7 @@
       // 
       // contextMenuStrip1
       // 
+      this.contextMenuStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
       this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.leftSideMenuItem,
@@ -272,6 +273,7 @@
       // 
       // contextMenuStrip2
       // 
+      this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tasktrayAboutMenuItem,
             this.tasktrayRestartMenuItem,
@@ -304,6 +306,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
       this.ClientSize = new System.Drawing.Size(77, 62);
       this.ContextMenuStrip = this.contextMenuStrip1;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -313,6 +316,8 @@
       this.Text = "Form1";
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+      this.MouseEnter += new System.EventHandler(this.MainForm_MouseEnter);
+      this.MouseLeave += new System.EventHandler(this.MainForm_MouseLeave);
       this.contextMenuStrip1.ResumeLayout(false);
       this.contextMenuStrip2.ResumeLayout(false);
       this.ResumeLayout(false);

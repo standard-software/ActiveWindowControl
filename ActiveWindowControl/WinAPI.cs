@@ -275,6 +275,11 @@ namespace ActiveWindowControl {
       }
     }
 
+    [DllImport("User32.dll", EntryPoint = "SendMessage")]
+    public static extern Int32 SendMessage(IntPtr hWnd, Int32 Msg, Int32 wParam, Int32 lParam);
 
+    public const int WM_SHOWWINDOW = 0x0018;
+
+    public const int WM_SETREDRAW = 11;
   }
 }
