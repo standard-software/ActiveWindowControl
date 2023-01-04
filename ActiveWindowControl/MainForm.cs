@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -52,8 +52,8 @@ namespace ActiveWindowControl {
         CreateSizeMenuItem(menuItemSize);
 
         menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 75%";
-        menuItemSize.Tag = 75;
+        menuItemSize.Text = "Size 70%";
+        menuItemSize.Tag = 70;
         menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
         resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
         CreateSizeMenuItem(menuItemSize);
@@ -61,6 +61,23 @@ namespace ActiveWindowControl {
         menuItemSize = new ToolStripMenuItem();
         menuItemSize.Text = "Size 50%";
         menuItemSize.Tag = 50;
+        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
+        CreateSizeMenuItem(menuItemSize);
+
+        menuItemSize = new ToolStripMenuItem();
+        menuItemSize.Text = "Size 30%";
+        menuItemSize.Tag = 30;
+        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
+        CreateSizeMenuItem(menuItemSize);
+
+        var separator = new ToolStripSeparator();
+        resizeWindowMenuItem.DropDownItems.Add(separator);
+
+        menuItemSize = new ToolStripMenuItem();
+        menuItemSize.Text = "Size 75%";
+        menuItemSize.Tag = 75;
         menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
         resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
         CreateSizeMenuItem(menuItemSize);
