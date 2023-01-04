@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -169,7 +169,7 @@ namespace ActiveWindowControl {
     }
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
-      notifyIcon1.Visible= false;
+      notifyIcon1.Visible = false;
       this.Close();
     }
 
@@ -216,20 +216,20 @@ namespace ActiveWindowControl {
         rect.bottom = rect.bottom + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
       }
 
-       //Console.WriteLine("{0} {1} {2}", foregroundWinHandle, rect.top, rect.left);
+      // Console.WriteLine("{0} {1} {2}", foregroundWinHandle, rect.top, rect.left);
 
-      //this.Top = rect.top;
-      //this.Left = rect.left;
-      //this.Width = rect.right - rect.left;
+      // this.Top = rect.top;
+      // this.Left = rect.left;
+      // this.Width = rect.right - rect.left;
       // this.Height = rect.bottom - rect.top;
 
-      //this.Top = rect.top;
-      //this.Left = rect.left;
-      //this.Width =
-      //    GetSystemMetrics(SystemMetric.SM_CXSIZE);
-      //this.Height =
-      //    GetSystemMetrics(SystemMetric.SM_CYSIZE) +
-      //    GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
+      // this.Top = rect.top;
+      // this.Left = rect.left;
+      // this.Width =
+      //   GetSystemMetrics(SystemMetric.SM_CXSIZE);
+      // this.Height =
+      //   GetSystemMetrics(SystemMetric.SM_CYSIZE) +
+      //   GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
 
       {
         int width = GetSystemMetrics(SystemMetric.SM_CXSIZE) + 10;
@@ -271,7 +271,6 @@ namespace ActiveWindowControl {
       if (!this.Bounds.Contains(Cursor.Position)) {
         this.contextMenuStrip1.Tag = null;
       }
-
     }
 
     private void MainForm_MouseDown(object sender, MouseEventArgs e) {
@@ -471,7 +470,7 @@ namespace ActiveWindowControl {
       GetWindowRect(foregroundWinHandle, out rect);
 
       Screen currentScreen = Screen.AllScreens[currentScreenIndex];
-      double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left) 
+      double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left)
         / (double)(currentScreen.WorkingArea.Width);
 
       double percentTop = (double)(rect.top - currentScreen.WorkingArea.Top)
