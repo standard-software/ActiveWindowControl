@@ -255,15 +255,26 @@ namespace ActiveWindowControl {
     }
 
     private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
-      bool existsOtherMonitor = false;
-      if (Screen.AllScreens.Length != 1) {
-        existsOtherMonitor= true;
+
+      if (Screen.AllScreens.Length == 1) {
+        toPrevMonitorMenuItem.Visible = false;
+        toNextMonitorMenuItem.Visible = false;
+        rootToPrevMonitorMenuItem.Visible = false;
+        rootToNextMonitorMenuItem.Visible = false;
+        toOtherMonitorSeparator.Visible = false;
+      } else if (Screen.AllScreens.Length == 2) {
+        toPrevMonitorMenuItem.Visible = false;
+        toNextMonitorMenuItem.Visible = true;
+        rootToPrevMonitorMenuItem.Visible = false;
+        rootToNextMonitorMenuItem.Visible = true;
+        toOtherMonitorSeparator.Visible = true;
+      } else if (3 <= Screen.AllScreens.Length) {
+        toPrevMonitorMenuItem.Visible = true;
+        toNextMonitorMenuItem.Visible = true;
+        rootToPrevMonitorMenuItem.Visible = true;
+        rootToNextMonitorMenuItem.Visible = true;
+        toOtherMonitorSeparator.Visible = true;
       }
-      toPrevMonitorMenuItem.Visible = existsOtherMonitor;
-      toNextMonitorMenuItem.Visible = existsOtherMonitor;
-      rootToPrevMonitorMenuItem.Visible = existsOtherMonitor;
-      rootToNextMonitorMenuItem.Visible = existsOtherMonitor;
-      toOtherMonitorSeparator.Visible = existsOtherMonitor;
 
     }
 

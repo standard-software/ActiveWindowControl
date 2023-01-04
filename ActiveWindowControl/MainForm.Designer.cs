@@ -71,7 +71,6 @@
       // 
       // contextMenuStrip1
       // 
-      this.contextMenuStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
       this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.leftSideMenuItem,
@@ -90,7 +89,7 @@
             this.aboutActiveWindowControlMenuItem,
             this.exitMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(291, 334);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(291, 356);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
@@ -316,8 +315,6 @@
       this.Text = "Form1";
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
-      this.MouseEnter += new System.EventHandler(this.MainForm_MouseEnter);
-      this.MouseLeave += new System.EventHandler(this.MainForm_MouseLeave);
       this.contextMenuStrip1.ResumeLayout(false);
       this.contextMenuStrip2.ResumeLayout(false);
       this.ResumeLayout(false);
