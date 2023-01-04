@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -81,6 +81,13 @@ namespace ActiveWindowControl {
       {
         rootToPrevMonitorMenuItem.Click += samePositionPrevMonitorMenuItem_Click;
         rootToNextMonitorMenuItem.Click += samePositionNextMonitorMenuItem_Click;
+      }
+
+      {
+        ToolStripProfessionalRenderer renderer = new VS2022MenuRenderer();
+        renderer.RoundedEdges = false;
+        ToolStripManager.Renderer = renderer;
+        ToolStripManager.VisualStylesEnabled = true;
       }
 
     }
@@ -559,12 +566,40 @@ namespace ActiveWindowControl {
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
     }
 
-    private void MainForm_MouseEnter(object sender, EventArgs e) {
-      //this.Opacity = 100;
+  }
+
+  public class VS2022MenuColorTable : ProfessionalColorTable {
+
+    public VS2022MenuColorTable() {
+      this.UseSystemColors = false;
     }
 
-    private void MainForm_MouseLeave(object sender, EventArgs e) {
-      //this.Opacity = 50;
+    public override Color ImageMarginGradientBegin { get { return Color.FromArgb(46, 46, 46); } }
+    public override Color ImageMarginGradientEnd { get { return Color.FromArgb(46, 46, 46); } }
+    public override Color ImageMarginGradientMiddle { get { return Color.FromArgb(46, 46, 46); } }
+    public override Color MenuBorder { get { return Color.FromArgb(66, 66, 66); } }
+    public override Color MenuItemBorder { get { return Color.FromArgb(112, 112, 112); } }
+    public override Color MenuItemSelected { get { return Color.FromArgb(61, 61, 61); } }
+    public override Color SeparatorDark { get { return Color.FromArgb(61, 61, 61); } }
+    public override Color ToolStripDropDownBackground { get { return Color.FromArgb(46, 46, 46); } }
+
+  }
+
+  public class VS2022MenuRenderer : ToolStripProfessionalRenderer {
+
+    public VS2022MenuRenderer()
+        : base(new VS2022MenuColorTable()) {
     }
+
+    protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e) {
+      e.TextColor = Color.FromArgb(250, 250, 250);
+      base.OnRenderItemText(e);
+    }
+
+    protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e) {
+      e.ArrowColor = Color.FromArgb(214, 214, 214);
+      base.OnRenderArrow(e);
+    }
+
   }
 }
