@@ -1,5 +1,11 @@
 ## Version
 
+### 0.3.0
+- Monitor Count 2 and 3 Change Menu
+- Add Resize 30% 70%
+- Mouse Hover Change Opacity
+- Dark Mode Thema
+
 ### 0.2.0
 - Add Tasktray & menu
   - About
