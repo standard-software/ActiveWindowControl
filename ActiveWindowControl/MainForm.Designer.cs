@@ -29,7 +29,7 @@
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.leftSideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.rightSideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.size90CenterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.size90TopLeftMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.size75CenterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.rootToPrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.rootToNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +60,7 @@
       this.tasktrayAboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tasktrayRestartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tasktrayExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.size90BottomRightMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.contextMenuStrip1.SuspendLayout();
       this.contextMenuStrip2.SuspendLayout();
       this.SuspendLayout();
@@ -75,7 +76,8 @@
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.leftSideMenuItem,
             this.rightSideMenuItem,
-            this.size90CenterMenuItem,
+            this.size90TopLeftMenuItem,
+            this.size90BottomRightMenuItem,
             this.size75CenterMenuItem,
             this.rootToPrevMonitorMenuItem,
             this.rootToNextMonitorMenuItem,
@@ -89,7 +91,7 @@
             this.aboutActiveWindowControlMenuItem,
             this.exitMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(291, 356);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(291, 382);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
@@ -105,17 +107,18 @@
       this.rightSideMenuItem.Size = new System.Drawing.Size(290, 26);
       this.rightSideMenuItem.Text = "Right Side";
       // 
-      // size90CenterMenuItem
+      // size90TopLeftMenuItem
       // 
-      this.size90CenterMenuItem.Name = "size90CenterMenuItem";
-      this.size90CenterMenuItem.Size = new System.Drawing.Size(290, 26);
-      this.size90CenterMenuItem.Text = "Center Size90%";
+      this.size90TopLeftMenuItem.Name = "size90TopLeftMenuItem";
+      this.size90TopLeftMenuItem.Size = new System.Drawing.Size(290, 26);
+      this.size90TopLeftMenuItem.Text = "Size 90% TopLeft";
+      this.size90TopLeftMenuItem.Click += new System.EventHandler(this.size90CenterMenuItem_Click);
       // 
       // size75CenterMenuItem
       // 
       this.size75CenterMenuItem.Name = "size75CenterMenuItem";
       this.size75CenterMenuItem.Size = new System.Drawing.Size(290, 26);
-      this.size75CenterMenuItem.Text = "Center Size75%";
+      this.size75CenterMenuItem.Text = "Size 75% Center";
       // 
       // rootToPrevMonitorMenuItem
       // 
@@ -301,6 +304,12 @@
       this.tasktrayExitMenuItem.Text = "Exit";
       this.tasktrayExitMenuItem.Click += new System.EventHandler(this.tasktrayExitMenuItem_Click);
       // 
+      // size90BottomRightMenuItem
+      // 
+      this.size90BottomRightMenuItem.Name = "size90BottomRightMenuItem";
+      this.size90BottomRightMenuItem.Size = new System.Drawing.Size(290, 26);
+      this.size90BottomRightMenuItem.Text = "Size 90% BottomRight";
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -358,7 +367,8 @@
     private System.Windows.Forms.ToolStripMenuItem tasktrayAboutMenuItem;
     private System.Windows.Forms.ToolStripMenuItem tasktrayExitMenuItem;
     private System.Windows.Forms.ToolStripMenuItem tasktrayRestartMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem size90CenterMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem size90TopLeftMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem size90BottomRightMenuItem;
   }
 }
 

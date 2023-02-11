@@ -27,19 +27,26 @@ namespace ActiveWindowControl {
         rightSideMenuItem.Tag = 50;
         rightSideMenuItem.Click += rightSideMenuItem_Click;
 
-        size90CenterMenuItem.Tag = 90;
-        size90CenterMenuItem.Click += centerMenuItem_Click;
+        size90TopLeftMenuItem.Tag = 90;
+        size90TopLeftMenuItem.Click += topLeftSideMenuItem_Click;
+
+        size90BottomRightMenuItem.Tag = 90;
+        size90BottomRightMenuItem.Click += bottomRightSideMenuItem_Click;
+
+        // Center Size 75%
         size75CenterMenuItem.Tag = 75;
         size75CenterMenuItem.Click += centerMenuItem_Click;
       }
 
       {
+        // Split Screen Area
         splitScreenAreaMenuItem.Tag = 50;
         splitScreenAreaMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         CreateLeftRightTopBottomMenuItem(splitScreenAreaMenuItem);
       }
 
       {
+        // Resize Window
         resizeWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
         ToolStripMenuItem menuItemSize;
@@ -583,6 +590,9 @@ namespace ActiveWindowControl {
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
     }
 
+    private void size90CenterMenuItem_Click(object sender, EventArgs e) {
+
+    }
   }
 
   public class VS2022MenuColorTable : ProfessionalColorTable {
