@@ -1,5 +1,10 @@
 ## Version
 
+### 0.4.0
+- Add Menu Top
+  - Size 90% TopLeft
+  - Size 90% BottomRight
+
 ### 0.3.0
 - Monitor Count 2 and 3 Change Menu
 - Add Resize 30% 70%
