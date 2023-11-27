@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -21,35 +21,20 @@ namespace ActiveWindowControl {
       this.Height = 0;
 
       {
-        leftSideMenuItem.Tag = 50;
-        leftSideMenuItem.Click += leftSideMenuItem_Click;
-
-        rightSideMenuItem.Tag = 50;
-        rightSideMenuItem.Click += rightSideMenuItem_Click;
-
-        size90TopLeftMenuItem.Tag = 90;
-        size90TopLeftMenuItem.Click += topLeftSideMenuItem_Click;
-
-        size90BottomRightMenuItem.Tag = 90;
-        size90BottomRightMenuItem.Click += bottomRightSideMenuItem_Click;
-
-        // Center Size 75%
-        size75CenterMenuItem.Tag = 75;
-        size75CenterMenuItem.Click += centerMenuItem_Click;
-      }
-
-      {
-        // Split Screen Area
-        splitScreenAreaMenuItem.Tag = 50;
-        splitScreenAreaMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        CreateLeftRightTopBottomMenuItem(splitScreenAreaMenuItem);
-      }
-
-      {
         // Resize Window
         resizeWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
         ToolStripMenuItem menuItemSize;
+
+        menuItemSize = new ToolStripMenuItem();
+        menuItemSize.Text = "Size 50%";
+        menuItemSize.Tag = 50;
+        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
+        CreateSizeMenuItem(menuItemSize);
+
+        var separator1 = new ToolStripSeparator();
+        resizeWindowMenuItem.DropDownItems.Add(separator1);
 
         menuItemSize = new ToolStripMenuItem();
         menuItemSize.Text = "Size 90%";
@@ -66,21 +51,14 @@ namespace ActiveWindowControl {
         CreateSizeMenuItem(menuItemSize);
 
         menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 50%";
-        menuItemSize.Tag = 50;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
-
-        menuItemSize = new ToolStripMenuItem();
         menuItemSize.Text = "Size 30%";
         menuItemSize.Tag = 30;
         menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
         resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
         CreateSizeMenuItem(menuItemSize);
 
-        var separator = new ToolStripSeparator();
-        resizeWindowMenuItem.DropDownItems.Add(separator);
+        var separator2 = new ToolStripSeparator();
+        resizeWindowMenuItem.DropDownItems.Add(separator2);
 
         menuItemSize = new ToolStripMenuItem();
         menuItemSize.Text = "Size 75%";
@@ -100,11 +78,6 @@ namespace ActiveWindowControl {
       {
         toPrevMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         toNextMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-      }
-
-      {
-        rootToPrevMonitorMenuItem.Click += samePositionPrevMonitorMenuItem_Click;
-        rootToNextMonitorMenuItem.Click += samePositionNextMonitorMenuItem_Click;
       }
 
       {
@@ -191,7 +164,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.4.0",
+        "ActiveWindowControl\nVersion:0.5.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -290,20 +263,14 @@ namespace ActiveWindowControl {
       if (Screen.AllScreens.Length == 1) {
         toPrevMonitorMenuItem.Visible = false;
         toNextMonitorMenuItem.Visible = false;
-        rootToPrevMonitorMenuItem.Visible = false;
-        rootToNextMonitorMenuItem.Visible = false;
         toOtherMonitorSeparator.Visible = false;
       } else if (Screen.AllScreens.Length == 2) {
         toPrevMonitorMenuItem.Visible = false;
         toNextMonitorMenuItem.Visible = true;
-        rootToPrevMonitorMenuItem.Visible = false;
-        rootToNextMonitorMenuItem.Visible = true;
         toOtherMonitorSeparator.Visible = true;
       } else if (3 <= Screen.AllScreens.Length) {
         toPrevMonitorMenuItem.Visible = true;
         toNextMonitorMenuItem.Visible = true;
-        rootToPrevMonitorMenuItem.Visible = true;
-        rootToNextMonitorMenuItem.Visible = true;
         toOtherMonitorSeparator.Visible = true;
       }
 

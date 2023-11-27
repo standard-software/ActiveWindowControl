@@ -1,5 +1,9 @@
 ## Version
 
+### 0.5.0
+- Delete Menu
+  - Favorite MenuItem
+
 ### 0.4.0
 - Add Menu Top
   - Size 90% TopLeft
