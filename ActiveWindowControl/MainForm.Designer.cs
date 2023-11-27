@@ -1,4 +1,4 @@
-namespace ActiveWindowControl {
+﻿namespace ActiveWindowControl {
   partial class MainForm {
     /// <summary>
     /// 必要なデザイナー変数です。
@@ -250,7 +250,9 @@ namespace ActiveWindowControl {
       this.ShowInTaskbar = false;
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
       this.Text = "Form1";
+      this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
       this.Load += new System.EventHandler(this.MainForm_Load);
+      this.Leave += new System.EventHandler(this.MainForm_Leave);
       this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
       this.contextMenuStrip1.ResumeLayout(false);
       this.contextMenuStrip2.ResumeLayout(false);

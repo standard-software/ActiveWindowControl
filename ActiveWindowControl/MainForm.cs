@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -194,6 +194,8 @@ namespace ActiveWindowControl {
       this.Close();
     }
 
+    private DateTime insideMouseCursorTime = DateTime.MinValue;
+
     private void timer1_Tick(object sender, EventArgs e) {
       IntPtr _foregroundWinHandle = WinAPI.GetForegroundWindow();
 
@@ -220,21 +222,6 @@ namespace ActiveWindowControl {
         rect.bottom = rect.bottom + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
       }
 
-      // Console.WriteLine("{0} {1} {2}", foregroundWinHandle, rect.top, rect.left);
-
-      // this.Top = rect.top;
-      // this.Left = rect.left;
-      // this.Width = rect.right - rect.left;
-      // this.Height = rect.bottom - rect.top;
-
-      // this.Top = rect.top;
-      // this.Left = rect.left;
-      // this.Width =
-      //   GetSystemMetrics(SystemMetric.SM_CXSIZE);
-      // this.Height =
-      //   GetSystemMetrics(SystemMetric.SM_CYSIZE) +
-      //   GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
-
       {
         int width = GetSystemMetrics(SystemMetric.SM_CXSIZE) + 10;
         int right = rect.right;
@@ -252,6 +239,21 @@ namespace ActiveWindowControl {
 
       if (this.Bounds.Contains(Cursor.Position)) {
         this.Opacity = 0.8;
+        if (insideMouseCursorTime == DateTime.MinValue) {
+          insideMouseCursorTime = DateTime.Now;
+        } else {
+          TimeSpan ts = DateTime.Now - insideMouseCursorTime;
+
+          if (0.6 <= ts.TotalSeconds) {
+            if (this.contextMenuStrip1.Tag == null) {
+              this.Activate();
+              this.contextMenuStrip1.Show(
+                new Point(this.Left, this.Bottom)
+              );
+              this.contextMenuStrip1.Tag = "Show";
+            }
+          }
+        }
       } else {
         this.Opacity = 0.3;
       }
@@ -277,9 +279,6 @@ namespace ActiveWindowControl {
     }
 
     private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
-      if (!this.Bounds.Contains(Cursor.Position)) {
-        this.contextMenuStrip1.Tag = null;
-      }
     }
 
     private void MainForm_MouseDown(object sender, MouseEventArgs e) {
@@ -290,7 +289,16 @@ namespace ActiveWindowControl {
         this.contextMenuStrip1.Tag = "Show";
       } else {
         this.contextMenuStrip1.Tag = null;
+        insideMouseCursorTime = DateTime.MinValue;
       }
+    }
+
+    private void MainForm_Deactivate(object sender, EventArgs e) {
+      this.contextMenuStrip1.Tag = null;
+      insideMouseCursorTime = DateTime.MinValue;
+    }
+
+    private void MainForm_Leave(object sender, EventArgs e) {
     }
 
     private int GetTargetScreenIndex(IntPtr hwnd) {

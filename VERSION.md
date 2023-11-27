@@ -1,5 +1,8 @@
 ## Version
 
+### 0.6.0
+- MouseMove Open Menu
+
 ### 0.5.0
 - Delete Menu
   - Favorite MenuItem
