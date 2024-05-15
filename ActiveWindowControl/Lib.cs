@@ -1,15 +1,33 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ActiveWindowControl {
   internal class Lib {
 
+    public static Screen[] GetAllScreens() {
+      var result = Screen.AllScreens
+      .OrderBy(screen => screen.Bounds.X)
+      .ThenBy(screen => screen.Bounds.Y).ToArray();
+
+      //System.Console.WriteLine(
+      //  "GetAllScreens " +
+      //  result[0].Bounds.ToString() +
+      //  result[1].Bounds.ToString() +
+      //  result[2].Bounds.ToString()
+      //);
+      // GetAllScreens {X=-2560,Y=0,Width=1463,Height=823}{X=0,Y=0,Width=1920,Height=1080}{X=1920,Y=17,Width=1920,Height=1080}
+
+      return result;
+    }
     public static int GetScreenIndexFromPoint(Point p, bool optionNotFoundPrimary = true) {
+      var screens = GetAllScreens();
+
       var primaryScreenIndex = -1;
-      for (int i = 0; i < Screen.AllScreens.Length; i += 1) {
-        var s = Screen.AllScreens[i];
+      for (int i = 0; i < screens.Length; i += 1) {
+        var s = screens[i];
         if (s.Bounds.Contains(p)) {
           return i;
         }

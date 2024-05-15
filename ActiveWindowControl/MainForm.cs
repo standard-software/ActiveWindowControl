@@ -164,7 +164,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.6.1",
+        "ActiveWindowControl\nVersion:0.7.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -320,7 +320,8 @@ namespace ActiveWindowControl {
     }
 
     private Screen GetTargetScreen(IntPtr hwnd) {
-      return Screen.AllScreens[GetTargetScreenIndex(hwnd)];
+      var screens = GetAllScreens();
+      return screens[GetTargetScreenIndex(hwnd)];
     }
 
     private void centerMenuItem_Click(object sender, EventArgs e) {
@@ -476,17 +477,18 @@ namespace ActiveWindowControl {
     }
 
     private void samePositionPrevMonitorMenuItem_Click(object sender, EventArgs e) {
+      var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
       var prevScreenIndex = currentScreenIndex - 1;
       if (prevScreenIndex == -1) {
-        prevScreenIndex = Screen.AllScreens.Length - 1;
+        prevScreenIndex = screens.Length - 1;
       }
-      var prevScreen = Screen.AllScreens[prevScreenIndex];
+      var prevScreen = screens[prevScreenIndex];
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
 
-      Screen currentScreen = Screen.AllScreens[currentScreenIndex];
+      Screen currentScreen = screens[currentScreenIndex];
       double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left)
         / (double)(currentScreen.WorkingArea.Width);
 
@@ -518,17 +520,18 @@ namespace ActiveWindowControl {
     }
 
     private void samePositionNextMonitorMenuItem_Click(object sender, EventArgs e) {
+      var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
       var nextScreenIndex = currentScreenIndex + 1;
-      if (nextScreenIndex == Screen.AllScreens.Length) {
+      if (nextScreenIndex == screens.Length) {
         nextScreenIndex = 0;
       }
-      var nextScreen = Screen.AllScreens[nextScreenIndex];
+      var nextScreen = screens[nextScreenIndex];
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
 
-      Screen currentScreen = Screen.AllScreens[currentScreenIndex];
+      Screen currentScreen = screens[currentScreenIndex];
       double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left) / (double)(currentScreen.WorkingArea.Width);
 
       double percentTop = (double)(rect.top - currentScreen.WorkingArea.Top) / (double)(currentScreen.WorkingArea.Height);

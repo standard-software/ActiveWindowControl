@@ -1,5 +1,11 @@
 ## Version
 
+### 0.7.0
+- Delete Menu Top
+  - About / Exit
+  - use tray icon menu it
+- Screen Sort XY
+
 ### 0.6.1
 - MouseMove Open Menu
   - adjust Time

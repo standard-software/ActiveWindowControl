@@ -36,8 +36,6 @@
       this.samePositionNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.maximizeNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-      this.aboutActiveWindowControlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.leftSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.rightSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -69,24 +67,22 @@
             this.toOtherMonitorSeparator,
             this.toPrevMonitorMenuItem,
             this.toNextMonitorMenuItem,
-            this.toolStripSeparator3,
-            this.aboutActiveWindowControlMenuItem,
-            this.exitMenuItem});
+            this.toolStripSeparator3});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(194, 126);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(247, 116);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
       // resizeWindowMenuItem
       // 
       this.resizeWindowMenuItem.Name = "resizeWindowMenuItem";
-      this.resizeWindowMenuItem.Size = new System.Drawing.Size(193, 22);
+      this.resizeWindowMenuItem.Size = new System.Drawing.Size(246, 26);
       this.resizeWindowMenuItem.Text = "Resize Window";
       // 
       // toOtherMonitorSeparator
       // 
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
-      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(190, 6);
+      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(243, 6);
       // 
       // toPrevMonitorMenuItem
       // 
@@ -94,20 +90,20 @@
             this.samePositionPrevMonitorMenuItem,
             this.maximizePrevMonitorMenuItem});
       this.toPrevMonitorMenuItem.Name = "toPrevMonitorMenuItem";
-      this.toPrevMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
+      this.toPrevMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
       this.toPrevMonitorMenuItem.Text = "Move To Prev Monitor";
       // 
       // samePositionPrevMonitorMenuItem
       // 
       this.samePositionPrevMonitorMenuItem.Name = "samePositionPrevMonitorMenuItem";
-      this.samePositionPrevMonitorMenuItem.Size = new System.Drawing.Size(148, 22);
+      this.samePositionPrevMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
       this.samePositionPrevMonitorMenuItem.Text = "Same Position";
       this.samePositionPrevMonitorMenuItem.Click += new System.EventHandler(this.samePositionPrevMonitorMenuItem_Click);
       // 
       // maximizePrevMonitorMenuItem
       // 
       this.maximizePrevMonitorMenuItem.Name = "maximizePrevMonitorMenuItem";
-      this.maximizePrevMonitorMenuItem.Size = new System.Drawing.Size(148, 22);
+      this.maximizePrevMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
       this.maximizePrevMonitorMenuItem.Text = "Maximize";
       this.maximizePrevMonitorMenuItem.Click += new System.EventHandler(this.maximizePrevMonitorMenuItem_Click);
       // 
@@ -117,41 +113,27 @@
             this.samePositionNextMonitorMenuItem,
             this.maximizeNextMonitorMenuItem});
       this.toNextMonitorMenuItem.Name = "toNextMonitorMenuItem";
-      this.toNextMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
+      this.toNextMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
       this.toNextMonitorMenuItem.Text = "Move To Next Monitor";
       // 
       // samePositionNextMonitorMenuItem
       // 
       this.samePositionNextMonitorMenuItem.Name = "samePositionNextMonitorMenuItem";
-      this.samePositionNextMonitorMenuItem.Size = new System.Drawing.Size(148, 22);
+      this.samePositionNextMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
       this.samePositionNextMonitorMenuItem.Text = "Same Position";
       this.samePositionNextMonitorMenuItem.Click += new System.EventHandler(this.samePositionNextMonitorMenuItem_Click);
       // 
       // maximizeNextMonitorMenuItem
       // 
       this.maximizeNextMonitorMenuItem.Name = "maximizeNextMonitorMenuItem";
-      this.maximizeNextMonitorMenuItem.Size = new System.Drawing.Size(148, 22);
+      this.maximizeNextMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
       this.maximizeNextMonitorMenuItem.Text = "Maximize";
       this.maximizeNextMonitorMenuItem.Click += new System.EventHandler(this.maximizeNextMonitorMenuItem_Click);
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
-      // 
-      // aboutActiveWindowControlMenuItem
-      // 
-      this.aboutActiveWindowControlMenuItem.Name = "aboutActiveWindowControlMenuItem";
-      this.aboutActiveWindowControlMenuItem.Size = new System.Drawing.Size(193, 22);
-      this.aboutActiveWindowControlMenuItem.Text = "About";
-      this.aboutActiveWindowControlMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
-      // 
-      // exitMenuItem
-      // 
-      this.exitMenuItem.Name = "exitMenuItem";
-      this.exitMenuItem.Size = new System.Drawing.Size(193, 22);
-      this.exitMenuItem.Text = "Exit";
-      this.exitMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(243, 6);
       // 
       // leftSideToolStripMenuItem
       // 
@@ -215,26 +197,26 @@
             this.tasktrayRestartMenuItem,
             this.tasktrayExitMenuItem});
       this.contextMenuStrip2.Name = "contextMenuStrip2";
-      this.contextMenuStrip2.Size = new System.Drawing.Size(111, 70);
+      this.contextMenuStrip2.Size = new System.Drawing.Size(136, 82);
       // 
       // tasktrayAboutMenuItem
       // 
       this.tasktrayAboutMenuItem.Name = "tasktrayAboutMenuItem";
-      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(110, 22);
+      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(135, 26);
       this.tasktrayAboutMenuItem.Text = "About";
       this.tasktrayAboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
       // tasktrayRestartMenuItem
       // 
       this.tasktrayRestartMenuItem.Name = "tasktrayRestartMenuItem";
-      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(110, 22);
+      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(135, 26);
       this.tasktrayRestartMenuItem.Text = "Restart";
       this.tasktrayRestartMenuItem.Click += new System.EventHandler(this.tasktrayRestartMenuItem_Click);
       // 
       // tasktrayExitMenuItem
       // 
       this.tasktrayExitMenuItem.Name = "tasktrayExitMenuItem";
-      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(110, 22);
+      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(135, 26);
       this.tasktrayExitMenuItem.Text = "Exit";
       this.tasktrayExitMenuItem.Click += new System.EventHandler(this.tasktrayExitMenuItem_Click);
       // 
@@ -275,8 +257,6 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripMenuItem splitPositionToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem resizeWindowMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem aboutActiveWindowControlMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
     private System.Windows.Forms.ToolStripSeparator toOtherMonitorSeparator;
     private System.Windows.Forms.ToolStripMenuItem toPrevMonitorMenuItem;
     private System.Windows.Forms.ToolStripMenuItem toNextMonitorMenuItem;
