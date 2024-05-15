@@ -164,7 +164,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.5.0",
+        "ActiveWindowControl\nVersion:0.6.1",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -244,7 +244,7 @@ namespace ActiveWindowControl {
         } else {
           TimeSpan ts = DateTime.Now - insideMouseCursorTime;
 
-          if (0.6 <= ts.TotalSeconds) {
+          if (0.4 <= ts.TotalSeconds) {
             if (this.contextMenuStrip1.Tag == null) {
               this.Activate();
               this.contextMenuStrip1.Show(

@@ -1,5 +1,9 @@
 ## Version
 
+### 0.6.1
+- MouseMove Open Menu
+  - adjust Time
+
 ### 0.6.0
 - MouseMove Open Menu
 
