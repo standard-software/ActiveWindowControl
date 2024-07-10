@@ -1,5 +1,10 @@
 ## Version
 
+### 0.8.1
+- update tasktray icon ux
+- Add Menu Top
+  - About
+
 ### 0.8.0
 - update tasktray icon ux
 - Add Menu

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ActiveWindowControl {
@@ -174,7 +175,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.8.0",
+        "ActiveWindowControl\nVersion:0.8.1",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -187,10 +188,18 @@ namespace ActiveWindowControl {
       this.Close();
     }
 
-    private void notifyIcon1_Click(object sender, EventArgs e) {
+    private async void notifyIcon1_Click(object sender, EventArgs e) {
+      //System.Console.WriteLine("notifyIcon1_Click " + this.contextMenuStrip2.Visible.ToString());
       if (this.contextMenuStrip2.Visible) {
+        //System.Console.WriteLine("notifyIcon1_Click Hide");
         this.contextMenuStrip2.Hide();
       } else {
+        //System.Console.WriteLine("notifyIcon1_Click Show");
+        this.contextMenuStrip2.Show(
+          Cursor.Position,
+          ToolStripDropDownDirection.AboveRight
+        );
+        await Task.Delay(100);
         this.contextMenuStrip2.Show(
           Cursor.Position,
           ToolStripDropDownDirection.AboveRight
@@ -614,6 +623,15 @@ namespace ActiveWindowControl {
     private void maximizeNextMonitorMenuItem_Click(object sender, EventArgs e) {
       samePositionNextMonitorMenuItem_Click(sender, e);
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
+    }
+
+    private void contextMenuStrip2_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
+      System.Console.WriteLine("contextMenuStrip2_Closed");
+      contextMenuStrip2.Visible = false;
+    }
+
+    private void contextMenuStrip2_Opening(object sender, CancelEventArgs e) {
+
     }
   }
 
