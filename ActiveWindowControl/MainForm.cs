@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -98,6 +98,11 @@ namespace ActiveWindowControl {
       menuItem.Text = "Left Side";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += leftSideMenuItem_Click;
+       rootMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Center Horizontal";
+      menuItem.Tag = rootMenuItem.Tag;
+      menuItem.Click += centerHorizontalMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
       menuItem.Text = "Right Side";
@@ -112,6 +117,11 @@ namespace ActiveWindowControl {
       menuItem.Text = "Top Side";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += topSideMenuItem_Click;
+      rootMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Center Vertical";
+      menuItem.Tag = rootMenuItem.Tag;
+      menuItem.Click += centerVerticalMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
       menuItem.Text = "Bottom Side";
@@ -164,7 +174,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.7.0",
+        "ActiveWindowControl\nVersion:0.8.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -181,10 +191,10 @@ namespace ActiveWindowControl {
       if (this.contextMenuStrip2.Visible) {
         this.contextMenuStrip2.Hide();
       } else {
-      this.contextMenuStrip2.Show(
-        Cursor.Position,
-        ToolStripDropDownDirection.AboveRight
-      );
+        this.contextMenuStrip2.Show(
+          Cursor.Position,
+          ToolStripDropDownDirection.AboveRight
+        );
       }
     }
 
@@ -361,6 +371,23 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
+    private void centerHorizontalMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      int size = (int)menuitem.Tag;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left + (r.Width * (100 - size) / 100) / 2,
+        r.Top,
+        (r.Width * size / 100),
+        r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
     private void rightSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
@@ -373,6 +400,23 @@ namespace ActiveWindowControl {
         r.Top,
         r.Width * size / 100,
         r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void centerVerticalMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      int size = (int)menuitem.Tag;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top + (r.Height * (100 - size) / 100) / 2,
+        r.Width,
+        r.Height * size / 100,
         1
       );
       ActiveWindow(foregroundWinHandle);

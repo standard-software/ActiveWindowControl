@@ -1,5 +1,11 @@
 ## Version
 
+### 0.8.0
+- update tasktray icon ux
+- Add Menu
+  - Center Horizontal
+  - Center Vertical
+
 ### 0.7.0
 - Delete Menu Top
   - About / Exit
