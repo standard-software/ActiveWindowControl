@@ -1,4 +1,4 @@
-﻿namespace ActiveWindowControl {
+namespace ActiveWindowControl {
   partial class MainForm {
     /// <summary>
     /// 必要なデザイナー変数です。
@@ -69,7 +69,7 @@
             this.toNextMonitorMenuItem,
             this.toolStripSeparator3});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(247, 116);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(247, 94);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
@@ -183,7 +183,6 @@
       // 
       // notifyIcon1
       // 
-      this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip2;
       this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
       this.notifyIcon1.Text = "ActiveWindowControl";
       this.notifyIcon1.Visible = true;

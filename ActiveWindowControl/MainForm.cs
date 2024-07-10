@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -178,10 +178,14 @@ namespace ActiveWindowControl {
     }
 
     private void notifyIcon1_Click(object sender, EventArgs e) {
+      if (this.contextMenuStrip2.Visible) {
+        this.contextMenuStrip2.Hide();
+      } else {
       this.contextMenuStrip2.Show(
         Cursor.Position,
         ToolStripDropDownDirection.AboveRight
       );
+      }
     }
 
     private void tasktrayRestartMenuItem_Click(object sender, EventArgs e) {
@@ -566,10 +570,6 @@ namespace ActiveWindowControl {
     private void maximizeNextMonitorMenuItem_Click(object sender, EventArgs e) {
       samePositionNextMonitorMenuItem_Click(sender, e);
       ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
-    }
-
-    private void size90CenterMenuItem_Click(object sender, EventArgs e) {
-
     }
   }
 
