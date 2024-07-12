@@ -96,7 +96,7 @@ namespace ActiveWindowControl {
       ToolStripSeparator separator;
 
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Left Side";
+      menuItem.Text = "Left";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += leftSideMenuItem_Click;
        rootMenuItem.DropDownItems.Add(menuItem);
@@ -106,7 +106,7 @@ namespace ActiveWindowControl {
       menuItem.Click += centerHorizontalMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Right Side";
+      menuItem.Text = "Right";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += rightSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
@@ -115,7 +115,7 @@ namespace ActiveWindowControl {
       rootMenuItem.DropDownItems.Add(separator);
 
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top Side";
+      menuItem.Text = "Top";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += topSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
@@ -125,7 +125,7 @@ namespace ActiveWindowControl {
       menuItem.Click += centerVerticalMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom Side";
+      menuItem.Text = "Bottom";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += bottomSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
@@ -134,22 +134,22 @@ namespace ActiveWindowControl {
       rootMenuItem.DropDownItems.Add(separator);
 
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "TopLeft Side";
+      menuItem.Text = "Top Left";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += topLeftSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "TopRight Side";
+      menuItem.Text = "Top Right";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += topRightSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "BottomLeft Side";
+      menuItem.Text = "Bottom Left";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += bottomLeftSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "BottomRight Side";
+      menuItem.Text = "Bottom Right";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += bottomRightSideMenuItem_Click;
       rootMenuItem.DropDownItems.Add(menuItem);
@@ -175,7 +175,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.8.1",
+        "ActiveWindowControl\nVersion:0.9.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information

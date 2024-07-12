@@ -1,5 +1,8 @@
 ## Version
 
+### 0.9.0
+- update menu item name
+
 ### 0.8.1
 - update tasktray icon ux
 - Add Menu Top
