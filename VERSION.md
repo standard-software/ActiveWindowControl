@@ -1,5 +1,9 @@
 ## Version
 
+### 0.10.0
+- Add Menu Top
+  - Left / Center Horizontal / Right
+
 ### 0.9.0
 - update menu item name
 

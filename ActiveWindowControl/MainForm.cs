@@ -21,59 +21,85 @@ namespace ActiveWindowControl {
       this.Left = 0;
       this.Height = 0;
 
+      ToolStripMenuItem menuItem;
+      ToolStripSeparator separator;
+
+      {
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Left";
+        menuItem.Tag = 50;
+        menuItem.Click += leftSideMenuItem_Click;
+        contextMenuStrip1.Items.Insert(0, menuItem);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Center Horizontal";
+        menuItem.Tag = 50;
+        menuItem.Click += centerHorizontalMenuItem_Click;
+        contextMenuStrip1.Items.Insert(1, menuItem);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Right";
+        menuItem.Tag = 50;
+        menuItem.Click += rightSideMenuItem_Click;
+        contextMenuStrip1.Items.Insert(2, menuItem);
+
+        separator = new ToolStripSeparator();
+        contextMenuStrip1.Items.Insert(3, separator);
+      }
+
       {
         // Resize Window
         resizeWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
-        ToolStripMenuItem menuItemSize;
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 50%";
-        menuItemSize.Tag = 50;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        separator = new ToolStripSeparator();
+        resizeWindowMenuItem.DropDownItems.Add(separator);
 
-        var separator1 = new ToolStripSeparator();
-        resizeWindowMenuItem.DropDownItems.Add(separator1);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 50%";
+        menuItem.Tag = 50;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 90%";
-        menuItemSize.Tag = 90;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        separator = new ToolStripSeparator();
+        resizeWindowMenuItem.DropDownItems.Add(separator);
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 70%";
-        menuItemSize.Tag = 70;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 90%";
+        menuItem.Tag = 90;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 30%";
-        menuItemSize.Tag = 30;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 70%";
+        menuItem.Tag = 70;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
+
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 30%";
+        menuItem.Tag = 30;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
 
         var separator2 = new ToolStripSeparator();
         resizeWindowMenuItem.DropDownItems.Add(separator2);
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 75%";
-        menuItemSize.Tag = 75;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 75%";
+        menuItem.Tag = 75;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
 
-        menuItemSize = new ToolStripMenuItem();
-        menuItemSize.Text = "Size 25%";
-        menuItemSize.Tag = 25;
-        menuItemSize.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItemSize);
-        CreateSizeMenuItem(menuItemSize);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Size 25%";
+        menuItem.Tag = 25;
+        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        CreateSizeMenuItem(menuItem);
       }
 
       {
@@ -99,7 +125,7 @@ namespace ActiveWindowControl {
       menuItem.Text = "Left";
       menuItem.Tag = rootMenuItem.Tag;
       menuItem.Click += leftSideMenuItem_Click;
-       rootMenuItem.DropDownItems.Add(menuItem);
+      rootMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
       menuItem.Text = "Center Horizontal";
       menuItem.Tag = rootMenuItem.Tag;
@@ -175,7 +201,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.9.0",
+        "ActiveWindowControl\nVersion:0.10.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -630,9 +656,7 @@ namespace ActiveWindowControl {
       contextMenuStrip2.Visible = false;
     }
 
-    private void contextMenuStrip2_Opening(object sender, CancelEventArgs e) {
 
-    }
   }
 
   public class VS2022MenuColorTable : ProfessionalColorTable {
