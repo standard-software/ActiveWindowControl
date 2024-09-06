@@ -31,18 +31,13 @@ namespace ActiveWindowControl {
         menuItem.Click += leftSideMenuItem_Click;
         contextMenuStrip1.Items.Insert(0, menuItem);
         menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Center Horizontal";
-        menuItem.Tag = 50;
-        menuItem.Click += centerHorizontalMenuItem_Click;
-        contextMenuStrip1.Items.Insert(1, menuItem);
-        menuItem = new ToolStripMenuItem();
         menuItem.Text = "Right";
         menuItem.Tag = 50;
         menuItem.Click += rightSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(2, menuItem);
+        contextMenuStrip1.Items.Insert(1, menuItem);
 
         separator = new ToolStripSeparator();
-        contextMenuStrip1.Items.Insert(3, separator);
+        contextMenuStrip1.Items.Insert(2, separator);
       }
 
       {
@@ -201,7 +196,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.10.0",
+        "ActiveWindowControl\nVersion:0.11.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information

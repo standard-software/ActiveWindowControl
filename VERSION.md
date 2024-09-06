@@ -1,5 +1,9 @@
 ## Version
 
+### 0.11.0
+- update menu item
+  - delete top item Center Horizntal
+
 ### 0.10.0
 - Add Menu Top
   - Left / Center Horizontal / Right
