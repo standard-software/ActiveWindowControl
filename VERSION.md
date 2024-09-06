@@ -1,5 +1,9 @@
 ## Version
 
+### 0.12.0
+2024/09/06 Fri  
+- Position it above the maximise button.
+
 ### 0.11.0
 - update menu item
   - delete top item Center Horizntal

@@ -44,7 +44,6 @@ namespace ActiveWindowControl {
         // Resize Window
         resizeWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
-
         separator = new ToolStripSeparator();
         resizeWindowMenuItem.DropDownItems.Add(separator);
 
@@ -196,7 +195,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.11.0",
+        "ActiveWindowControl\nVersion:0.12.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -262,24 +261,36 @@ namespace ActiveWindowControl {
       GetWindowRect(foregroundWinHandle, out rect);
 
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
-        rect.top = rect.top + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
-        rect.bottom = rect.bottom + GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) - 1;
+        var SM_CYSIZEFRAME = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
+        rect.top = rect.top + SM_CYSIZEFRAME - 1;
+        rect.bottom = rect.bottom + SM_CYSIZEFRAME - 1;
+        rect.right -= 2;
       }
+      //System.Console.WriteLine(GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME));
+      //System.Console.WriteLine(GetSystemMetrics(SystemMetric.SM_CXSIZE));
 
-      {
-        int width = GetSystemMetrics(SystemMetric.SM_CXSIZE) + 10;
-        int right = rect.right;
-        right -= 6;
-        this.Top = rect.top + 1;
-        this.Width = width;
-        // this.Left = right - width * 2;
-        // this.Left = right - width * 3;
-        this.Left = right - width * 4;
-        this.Height = (
-          GetSystemMetrics(SystemMetric.SM_CYSIZE) +
-          GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2
-        ) / 2;
-      }
+      this.Top = rect.top + 1;
+
+      // button width
+      int width = GetSystemMetrics(SystemMetric.SM_CXSIZE) + 10;
+      this.Width = width - 2;
+
+      int right = rect.right - 5;
+
+      // Above the maximize button
+      this.Left = right - width * 2;
+
+      // // Above the minimise button
+      // this.Left = right - width * 3;
+
+      // // Left of minimise button
+      // this.Left = right - width * 4;
+
+      this.Height = (
+        GetSystemMetrics(SystemMetric.SM_CYSIZE) +
+        GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) + 1
+      ) / 2;
+      
 
       if (this.Bounds.Contains(Cursor.Position)) {
         this.Opacity = 0.8;
@@ -291,9 +302,18 @@ namespace ActiveWindowControl {
           if (0.4 <= ts.TotalSeconds) {
             if (this.contextMenuStrip1.Tag == null) {
               this.Activate();
+
+              // // BelowRight
+              // this.contextMenuStrip1.Show(
+              //   new Point(this.Left, this.Bottom)
+              // );
+
+              // BelowLeft
               this.contextMenuStrip1.Show(
-                new Point(this.Left, this.Bottom)
+                new Point(this.Right, this.Bottom),
+                ToolStripDropDownDirection.BelowLeft
               );
+        
               this.contextMenuStrip1.Tag = "Show";
             }
           }
@@ -327,9 +347,18 @@ namespace ActiveWindowControl {
 
     private void MainForm_MouseDown(object sender, MouseEventArgs e) {
       if (this.contextMenuStrip1.Tag == null) {
+
+        // // BelowRight
+        // this.contextMenuStrip1.Show(
+        //   new Point(this.Left, this.Bottom)
+        // );
+
+        // BelowLeft
         this.contextMenuStrip1.Show(
-          new Point(this.Left, this.Bottom)
+          new Point(this.Right, this.Bottom),
+          ToolStripDropDownDirection.BelowLeft
         );
+
         this.contextMenuStrip1.Tag = "Show";
       } else {
         this.contextMenuStrip1.Tag = null;
@@ -647,11 +676,9 @@ namespace ActiveWindowControl {
     }
 
     private void contextMenuStrip2_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
-      System.Console.WriteLine("contextMenuStrip2_Closed");
+      //System.Console.WriteLine("contextMenuStrip2_Closed");
       contextMenuStrip2.Visible = false;
     }
-
-
   }
 
   public class VS2022MenuColorTable : ProfessionalColorTable {
