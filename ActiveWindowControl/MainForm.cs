@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -97,8 +98,8 @@ namespace ActiveWindowControl {
       }
 
       {
-        toPrevMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        toNextMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        moveToPrevMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        moveToNextMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
       }
 
       {
@@ -195,7 +196,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.12.0",
+        "ActiveWindowControl\nVersion:0.13.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -327,16 +328,16 @@ namespace ActiveWindowControl {
     private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
 
       if (Screen.AllScreens.Length == 1) {
-        toPrevMonitorMenuItem.Visible = false;
-        toNextMonitorMenuItem.Visible = false;
+        moveToPrevMonitorMenuItem.Visible = false;
+        moveToNextMonitorMenuItem.Visible = false;
         toOtherMonitorSeparator.Visible = false;
       } else if (Screen.AllScreens.Length == 2) {
-        toPrevMonitorMenuItem.Visible = false;
-        toNextMonitorMenuItem.Visible = true;
+        moveToPrevMonitorMenuItem.Visible = false;
+        moveToNextMonitorMenuItem.Visible = true;
         toOtherMonitorSeparator.Visible = true;
       } else if (3 <= Screen.AllScreens.Length) {
-        toPrevMonitorMenuItem.Visible = true;
-        toNextMonitorMenuItem.Visible = true;
+        moveToPrevMonitorMenuItem.Visible = true;
+        moveToNextMonitorMenuItem.Visible = true;
         toOtherMonitorSeparator.Visible = true;
       }
 
@@ -583,7 +584,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void samePositionPrevMonitorMenuItem_Click(object sender, EventArgs e) {
+    private void moveToSamePositionPrevMonitor(object sender, EventArgs e) {
       var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
       var prevScreenIndex = currentScreenIndex - 1;
@@ -626,7 +627,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void samePositionNextMonitorMenuItem_Click(object sender, EventArgs e) {
+    private void moveToSamePositionNextMonitor(object sender, EventArgs e) {
       var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
       var nextScreenIndex = currentScreenIndex + 1;
@@ -662,23 +663,33 @@ namespace ActiveWindowControl {
         (int)(r.Height * percentHeight),
         1
       );
+
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void maximizePrevMonitorMenuItem_Click(object sender, EventArgs e) {
-      samePositionPrevMonitorMenuItem_Click(sender, e);
-      ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
+    private void moveToPrevMonitorMenuItem_Click(object sender, EventArgs e) {
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        moveToSamePositionPrevMonitor(sender, e);
+        SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+      } else {
+        moveToSamePositionPrevMonitor(sender, e);
+      }
     }
 
-    private void maximizeNextMonitorMenuItem_Click(object sender, EventArgs e) {
-      samePositionNextMonitorMenuItem_Click(sender, e);
-      ShowWindow(foregroundWinHandle, SW_SHOWMAXIMIZED);
+    private void moveToNextMonitorMenuItem_Click(object sender, EventArgs e) {
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        moveToSamePositionNextMonitor(sender, e);
+        SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+      } else {
+        moveToSamePositionNextMonitor(sender, e);
+      }
     }
 
     private void contextMenuStrip2_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
       //System.Console.WriteLine("contextMenuStrip2_Closed");
       contextMenuStrip2.Visible = false;
     }
+
   }
 
   public class VS2022MenuColorTable : ProfessionalColorTable {

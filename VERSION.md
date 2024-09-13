@@ -1,5 +1,9 @@
 ## Version
 
+### 0.13.0
+2024/09/13 Fri
+- update move to prev/next monitor
+
 ### 0.12.0
 2024/09/06 Fri  
 - Position it above the maximise button.

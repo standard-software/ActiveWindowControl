@@ -276,10 +276,15 @@ namespace ActiveWindowControl {
     }
 
     [DllImport("User32.dll", EntryPoint = "SendMessage")]
-    public static extern Int32 SendMessage(IntPtr hWnd, Int32 Msg, Int32 wParam, Int32 lParam);
+    public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
 
     public const int WM_SHOWWINDOW = 0x0018;
 
     public const int WM_SETREDRAW = 11;
+
+    // 定数の定義
+    public const int WM_SYSCOMMAND = 0x0112;
+    public const int SC_MAXIMIZE = 0xF030;
+
   }
 }

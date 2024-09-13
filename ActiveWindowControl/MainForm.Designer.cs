@@ -43,15 +43,11 @@ namespace ActiveWindowControl {
       this.tasktrayExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.resizeWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toOtherMonitorSeparator = new System.Windows.Forms.ToolStripSeparator();
-      this.toPrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.samePositionPrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.maximizePrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.samePositionNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.maximizeNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.moveToPrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.moveToNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.contextMenuStrip2.SuspendLayout();
       this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -163,52 +159,6 @@ namespace ActiveWindowControl {
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
       this.toOtherMonitorSeparator.Size = new System.Drawing.Size(243, 6);
       // 
-      // toPrevMonitorMenuItem
-      // 
-      this.toPrevMonitorMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.samePositionPrevMonitorMenuItem,
-            this.maximizePrevMonitorMenuItem});
-      this.toPrevMonitorMenuItem.Name = "toPrevMonitorMenuItem";
-      this.toPrevMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
-      this.toPrevMonitorMenuItem.Text = "Move To Prev Monitor";
-      // 
-      // samePositionPrevMonitorMenuItem
-      // 
-      this.samePositionPrevMonitorMenuItem.Name = "samePositionPrevMonitorMenuItem";
-      this.samePositionPrevMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
-      this.samePositionPrevMonitorMenuItem.Text = "Same Position";
-      this.samePositionPrevMonitorMenuItem.Click += new System.EventHandler(this.samePositionPrevMonitorMenuItem_Click);
-      // 
-      // maximizePrevMonitorMenuItem
-      // 
-      this.maximizePrevMonitorMenuItem.Name = "maximizePrevMonitorMenuItem";
-      this.maximizePrevMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
-      this.maximizePrevMonitorMenuItem.Text = "Maximize";
-      this.maximizePrevMonitorMenuItem.Click += new System.EventHandler(this.maximizePrevMonitorMenuItem_Click);
-      // 
-      // toNextMonitorMenuItem
-      // 
-      this.toNextMonitorMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.samePositionNextMonitorMenuItem,
-            this.maximizeNextMonitorMenuItem});
-      this.toNextMonitorMenuItem.Name = "toNextMonitorMenuItem";
-      this.toNextMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
-      this.toNextMonitorMenuItem.Text = "Move To Next Monitor";
-      // 
-      // samePositionNextMonitorMenuItem
-      // 
-      this.samePositionNextMonitorMenuItem.Name = "samePositionNextMonitorMenuItem";
-      this.samePositionNextMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
-      this.samePositionNextMonitorMenuItem.Text = "Same Position";
-      this.samePositionNextMonitorMenuItem.Click += new System.EventHandler(this.samePositionNextMonitorMenuItem_Click);
-      // 
-      // maximizeNextMonitorMenuItem
-      // 
-      this.maximizeNextMonitorMenuItem.Name = "maximizeNextMonitorMenuItem";
-      this.maximizeNextMonitorMenuItem.Size = new System.Drawing.Size(187, 26);
-      this.maximizeNextMonitorMenuItem.Text = "Maximize";
-      this.maximizeNextMonitorMenuItem.Click += new System.EventHandler(this.maximizeNextMonitorMenuItem_Click);
-      // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -227,14 +177,28 @@ namespace ActiveWindowControl {
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resizeWindowMenuItem,
             this.toOtherMonitorSeparator,
-            this.toPrevMonitorMenuItem,
-            this.toNextMonitorMenuItem,
+            this.moveToPrevMonitorMenuItem,
+            this.moveToNextMonitorMenuItem,
             this.toolStripSeparator3,
             this.aboutMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
       this.contextMenuStrip1.Size = new System.Drawing.Size(247, 142);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+      // 
+      // moveToPrevMonitorMenuItem
+      // 
+      this.moveToPrevMonitorMenuItem.Name = "moveToPrevMonitorMenuItem";
+      this.moveToPrevMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
+      this.moveToPrevMonitorMenuItem.Text = "Move To Prev Monitor";
+      this.moveToPrevMonitorMenuItem.Click += new System.EventHandler(this.moveToPrevMonitorMenuItem_Click);
+      // 
+      // moveToNextMonitorMenuItem
+      // 
+      this.moveToNextMonitorMenuItem.Name = "moveToNextMonitorMenuItem";
+      this.moveToNextMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
+      this.moveToNextMonitorMenuItem.Text = "Move To Next Monitor";
+      this.moveToNextMonitorMenuItem.Click += new System.EventHandler(this.moveToNextMonitorMenuItem_Click);
       // 
       // MainForm
       // 
@@ -279,15 +243,11 @@ namespace ActiveWindowControl {
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     private System.Windows.Forms.ToolStripMenuItem resizeWindowMenuItem;
     private System.Windows.Forms.ToolStripSeparator toOtherMonitorSeparator;
-    private System.Windows.Forms.ToolStripMenuItem toPrevMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem samePositionPrevMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem maximizePrevMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem toNextMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem samePositionNextMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem maximizeNextMonitorMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem moveToPrevMonitorMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem moveToNextMonitorMenuItem;
   }
 }
 
