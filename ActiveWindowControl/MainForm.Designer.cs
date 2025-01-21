@@ -109,6 +109,7 @@ namespace ActiveWindowControl {
       this.notifyIcon1.Text = "ActiveWindowControl";
       this.notifyIcon1.Visible = true;
       this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+      this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
       // 
       // contextMenuStrip2
       // 

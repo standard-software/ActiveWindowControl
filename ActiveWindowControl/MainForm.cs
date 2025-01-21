@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -226,6 +226,11 @@ namespace ActiveWindowControl {
           ToolStripDropDownDirection.AboveRight
         );
       }
+    }
+
+    private void notifyIcon1_DoubleClick(object sender, EventArgs e) {
+      notifyIcon1.Visible = false;
+      Application.Restart();
     }
 
     private void tasktrayRestartMenuItem_Click(object sender, EventArgs e) {
