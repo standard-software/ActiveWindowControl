@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -27,22 +27,43 @@ namespace ActiveWindowControl {
 
       {
         menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Fit Left";
+        menuItem.Click += fitLeftSideMenuItem_Click;
+        contextMenuStrip1.Items.Insert(0, menuItem);
+        menuItem = new ToolStripMenuItem();
+        menuItem.Text = "Fit Right";
+        menuItem.Click += fitRightSideMenuItem_Click;
+        contextMenuStrip1.Items.Insert(1, menuItem);
+
+      }
+      {
+        var fitCornerMenuItem = new ToolStripMenuItem();
+        fitCornerMenuItem.Text = "Fit Window";
+        contextMenuStrip1.Items.Insert(2, fitCornerMenuItem);
+        fitCornerMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        CreateFitCornerMenuItem(fitCornerMenuItem);
+
+        separator = new ToolStripSeparator();
+        contextMenuStrip1.Items.Insert(3, separator);
+      }
+
+      {
+        menuItem = new ToolStripMenuItem();
         menuItem.Text = "Snap Left";
         menuItem.Tag = 50;
         menuItem.Click += snapLeftSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(0, menuItem);
+        contextMenuStrip1.Items.Insert(4, menuItem);
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Snap Right";
         menuItem.Tag = 50;
         menuItem.Click += snapRightSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(1, menuItem);
+        contextMenuStrip1.Items.Insert(5, menuItem);
 
         separator = new ToolStripSeparator();
-        contextMenuStrip1.Items.Insert(2, separator);
+        contextMenuStrip1.Items.Add(separator);
       }
 
       {
-        // Resize Window
         snapWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
         menuItem = new ToolStripMenuItem();
@@ -50,7 +71,7 @@ namespace ActiveWindowControl {
         menuItem.Tag = 50;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
 
         separator = new ToolStripSeparator();
         snapWindowMenuItem.DropDownItems.Add(separator);
@@ -60,21 +81,21 @@ namespace ActiveWindowControl {
         menuItem.Tag = 90;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 70%";
         menuItem.Tag = 70;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 30%";
         menuItem.Tag = 30;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
 
         var separator2 = new ToolStripSeparator();
         snapWindowMenuItem.DropDownItems.Add(separator2);
@@ -84,14 +105,14 @@ namespace ActiveWindowControl {
         menuItem.Tag = 75;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 25%";
         menuItem.Tag = 25;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
         snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSizeMenuItem(menuItem);
+        CreateSnapSizeMenuItem(menuItem);
       }
 
       {
@@ -108,7 +129,7 @@ namespace ActiveWindowControl {
 
     }
 
-    private void CreateSizeMenuItem(ToolStripMenuItem sizeMenuItem) {
+    private void CreateSnapSizeMenuItem(ToolStripMenuItem sizeMenuItem) {
 
       ToolStripMenuItem menuItem;
       ToolStripSeparator separator;
@@ -183,10 +204,45 @@ namespace ActiveWindowControl {
 
     }
 
+    private void CreateFitCornerMenuItem(ToolStripMenuItem sizeMenuItem) {
+
+      ToolStripMenuItem menuItem;
+      ToolStripSeparator separator;
+
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top";
+      menuItem.Click += fitTopSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom";
+      menuItem.Click += fitBottomSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+
+      separator = new ToolStripSeparator();
+      sizeMenuItem.DropDownItems.Add(separator);
+
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Left";
+      menuItem.Click += fitTopLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Right";
+      menuItem.Click += fitTopRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Left";
+      menuItem.Click += fitBottomLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Right";
+      menuItem.Click += fitBottomRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+    }
+
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.14.0",
+        "ActiveWindowControl\nVersion:0.13.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -575,6 +631,158 @@ namespace ActiveWindowControl {
         r.Top + r.Height * (100 - size) / 100,
         r.Width * size / 100,
         r.Height * size / 100,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void fitLeftSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top,
+        winRect.right - winRect.left,
+        r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+    private void fitRightSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left + r.Width - (winRect.right - winRect.left),
+        r.Top,
+        winRect.right - winRect.left,
+        r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void fitTopSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
+      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top,
+        r.Width,
+        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+    private void fitBottomSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
+      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top + r.Height - (winRect.bottom - winRect.top),
+        r.Width,
+        winRect.bottom - winRect.top,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void fitTopLeftSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
+      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top,
+        winRect.right - winRect.left,
+        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+    private void fitTopRightSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
+      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left + r.Width - (winRect.right - winRect.left),
+        r.Top,
+        winRect.right - winRect.left,
+        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void fitBottomLeftSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top + r.Height - (winRect.bottom - winRect.top),
+        winRect.right - winRect.left,
+        winRect.bottom - winRect.top,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+    private void fitBottomRightSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      RECT winRect;
+      GetWindowRect(foregroundWinHandle, out winRect);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left + r.Width - (winRect.right - winRect.left),
+        r.Top + r.Height - (winRect.bottom - winRect.top),
+        winRect.right - winRect.left,
+        winRect.bottom - winRect.top,
         1
       );
       ActiveWindow(foregroundWinHandle);
