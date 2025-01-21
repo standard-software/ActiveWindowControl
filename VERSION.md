@@ -3,6 +3,8 @@
 ### 0.13.0
 2025/01/21 Tue
 - tray icon double click to restart
+- change menu item center
+- change menu title resize -> snap
 
 ### 0.13.0
 2024/09/13 Fri

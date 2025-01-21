@@ -41,7 +41,7 @@ namespace ActiveWindowControl {
       this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
       this.tasktrayRestartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tasktrayExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.resizeWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.snapWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toOtherMonitorSeparator = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,55 +120,55 @@ namespace ActiveWindowControl {
             this.tasktrayRestartMenuItem,
             this.tasktrayExitMenuItem});
       this.contextMenuStrip2.Name = "contextMenuStrip2";
-      this.contextMenuStrip2.Size = new System.Drawing.Size(136, 88);
+      this.contextMenuStrip2.Size = new System.Drawing.Size(111, 76);
       this.contextMenuStrip2.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip2_Closed);
       // 
       // tasktrayAboutMenuItem
       // 
       this.tasktrayAboutMenuItem.Name = "tasktrayAboutMenuItem";
-      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(135, 26);
+      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayAboutMenuItem.Text = "About";
       this.tasktrayAboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
       // toolStripMenuItem3
       // 
       this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-      this.toolStripMenuItem3.Size = new System.Drawing.Size(132, 6);
+      this.toolStripMenuItem3.Size = new System.Drawing.Size(107, 6);
       // 
       // tasktrayRestartMenuItem
       // 
       this.tasktrayRestartMenuItem.Name = "tasktrayRestartMenuItem";
-      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(135, 26);
+      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayRestartMenuItem.Text = "Restart";
       this.tasktrayRestartMenuItem.Click += new System.EventHandler(this.tasktrayRestartMenuItem_Click);
       // 
       // tasktrayExitMenuItem
       // 
       this.tasktrayExitMenuItem.Name = "tasktrayExitMenuItem";
-      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(135, 26);
+      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayExitMenuItem.Text = "Exit";
       this.tasktrayExitMenuItem.Click += new System.EventHandler(this.tasktrayExitMenuItem_Click);
       // 
-      // resizeWindowMenuItem
+      // snapWindowMenuItem
       // 
-      this.resizeWindowMenuItem.Name = "resizeWindowMenuItem";
-      this.resizeWindowMenuItem.Size = new System.Drawing.Size(246, 26);
-      this.resizeWindowMenuItem.Text = "Resize Window";
+      this.snapWindowMenuItem.Name = "snapWindowMenuItem";
+      this.snapWindowMenuItem.Size = new System.Drawing.Size(193, 22);
+      this.snapWindowMenuItem.Text = "Snap Window";
       // 
       // toOtherMonitorSeparator
       // 
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
-      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(243, 6);
+      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(190, 6);
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(243, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
       // 
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(246, 26);
+      this.aboutMenuItem.Size = new System.Drawing.Size(193, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
@@ -176,28 +176,28 @@ namespace ActiveWindowControl {
       // 
       this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.resizeWindowMenuItem,
+            this.snapWindowMenuItem,
             this.toOtherMonitorSeparator,
             this.moveToPrevMonitorMenuItem,
             this.moveToNextMonitorMenuItem,
             this.toolStripSeparator3,
             this.aboutMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(247, 142);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(194, 126);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
       // moveToPrevMonitorMenuItem
       // 
       this.moveToPrevMonitorMenuItem.Name = "moveToPrevMonitorMenuItem";
-      this.moveToPrevMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
+      this.moveToPrevMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
       this.moveToPrevMonitorMenuItem.Text = "Move To Prev Monitor";
       this.moveToPrevMonitorMenuItem.Click += new System.EventHandler(this.moveToPrevMonitorMenuItem_Click);
       // 
       // moveToNextMonitorMenuItem
       // 
       this.moveToNextMonitorMenuItem.Name = "moveToNextMonitorMenuItem";
-      this.moveToNextMonitorMenuItem.Size = new System.Drawing.Size(246, 26);
+      this.moveToNextMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
       this.moveToNextMonitorMenuItem.Text = "Move To Next Monitor";
       this.moveToNextMonitorMenuItem.Click += new System.EventHandler(this.moveToNextMonitorMenuItem_Click);
       // 
@@ -242,7 +242,7 @@ namespace ActiveWindowControl {
     private System.Windows.Forms.ToolStripMenuItem tasktrayExitMenuItem;
     private System.Windows.Forms.ToolStripMenuItem tasktrayRestartMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-    private System.Windows.Forms.ToolStripMenuItem resizeWindowMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem snapWindowMenuItem;
     private System.Windows.Forms.ToolStripSeparator toOtherMonitorSeparator;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;

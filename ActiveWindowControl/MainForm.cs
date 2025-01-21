@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -27,14 +27,14 @@ namespace ActiveWindowControl {
 
       {
         menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Left";
+        menuItem.Text = "Snap Left";
         menuItem.Tag = 50;
-        menuItem.Click += leftSideMenuItem_Click;
+        menuItem.Click += snapLeftSideMenuItem_Click;
         contextMenuStrip1.Items.Insert(0, menuItem);
         menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Right";
+        menuItem.Text = "Snap Right";
         menuItem.Tag = 50;
-        menuItem.Click += rightSideMenuItem_Click;
+        menuItem.Click += snapRightSideMenuItem_Click;
         contextMenuStrip1.Items.Insert(1, menuItem);
 
         separator = new ToolStripSeparator();
@@ -43,57 +43,54 @@ namespace ActiveWindowControl {
 
       {
         // Resize Window
-        resizeWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-
-        separator = new ToolStripSeparator();
-        resizeWindowMenuItem.DropDownItems.Add(separator);
+        snapWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 50%";
         menuItem.Tag = 50;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
 
         separator = new ToolStripSeparator();
-        resizeWindowMenuItem.DropDownItems.Add(separator);
+        snapWindowMenuItem.DropDownItems.Add(separator);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 90%";
         menuItem.Tag = 90;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 70%";
         menuItem.Tag = 70;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 30%";
         menuItem.Tag = 30;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
 
         var separator2 = new ToolStripSeparator();
-        resizeWindowMenuItem.DropDownItems.Add(separator2);
+        snapWindowMenuItem.DropDownItems.Add(separator2);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 75%";
         menuItem.Tag = 75;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
 
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Size 25%";
         menuItem.Tag = 25;
         menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        resizeWindowMenuItem.DropDownItems.Add(menuItem);
+        snapWindowMenuItem.DropDownItems.Add(menuItem);
         CreateSizeMenuItem(menuItem);
       }
 
@@ -111,92 +108,85 @@ namespace ActiveWindowControl {
 
     }
 
-    private void CreateLeftRightTopBottomMenuItem(ToolStripMenuItem rootMenuItem) {
-
-      ToolStripMenuItem menuItem;
-      ToolStripSeparator separator;
-
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Left";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += leftSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Center Horizontal";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += centerHorizontalMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Right";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += rightSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-
-      separator = new ToolStripSeparator();
-      rootMenuItem.DropDownItems.Add(separator);
-
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += topSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Center Vertical";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += centerVerticalMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += bottomSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-
-      separator = new ToolStripSeparator();
-      rootMenuItem.DropDownItems.Add(separator);
-
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top Left";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += topLeftSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top Right";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += topRightSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom Left";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += bottomLeftSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom Right";
-      menuItem.Tag = rootMenuItem.Tag;
-      menuItem.Click += bottomRightSideMenuItem_Click;
-      rootMenuItem.DropDownItems.Add(menuItem);
-    }
-
     private void CreateSizeMenuItem(ToolStripMenuItem sizeMenuItem) {
 
       ToolStripMenuItem menuItem;
       ToolStripSeparator separator;
 
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Center";
+      menuItem.Text = "Left";
       menuItem.Tag = sizeMenuItem.Tag;
-      menuItem.Click += centerMenuItem_Click;
+      menuItem.Click += snapLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Right";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapRightSideMenuItem_Click;
       sizeMenuItem.DropDownItems.Add(menuItem);
 
       separator = new ToolStripSeparator();
       sizeMenuItem.DropDownItems.Add(separator);
 
-      CreateLeftRightTopBottomMenuItem(sizeMenuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapTopSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapBottomSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+
+      separator = new ToolStripSeparator();
+      sizeMenuItem.DropDownItems.Add(separator);
+
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Left";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapTopLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Right";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapTopRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Left";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapBottomLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Right";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapBottomRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+
+      separator = new ToolStripSeparator();
+      sizeMenuItem.DropDownItems.Add(separator);
+      
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Screen Center";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapCenterScreenMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Horizontal Center";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapCenterHorizontalMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Center Vertical";
+      menuItem.Tag = sizeMenuItem.Tag;
+      menuItem.Click += snapCenterVerticalMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+
     }
 
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.13.0",
+        "ActiveWindowControl\nVersion:0.14.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -403,7 +393,7 @@ namespace ActiveWindowControl {
       return screens[GetTargetScreenIndex(hwnd)];
     }
 
-    private void centerMenuItem_Click(object sender, EventArgs e) {
+    private void snapCenterScreenMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -419,24 +409,8 @@ namespace ActiveWindowControl {
       );
       ActiveWindow(foregroundWinHandle);
     }
-    private void leftSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
-      int size = (int)menuitem.Tag;
-      if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
-      var r = targetScreen.WorkingArea;
-      MoveWindow(
-        foregroundWinHandle,
-        r.Left,
-        r.Top,
-        (r.Width * size / 100),
-        r.Height,
-        1
-      );
-      ActiveWindow(foregroundWinHandle);
-    }
 
-    private void centerHorizontalMenuItem_Click(object sender, EventArgs e) {
+    private void snapCenterHorizontalMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -453,24 +427,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void rightSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
-      int size = (int)menuitem.Tag;
-      if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
-      var r = targetScreen.WorkingArea;
-      MoveWindow(
-        foregroundWinHandle,
-        r.Left + r.Width * (100 - size) / 100,
-        r.Top,
-        r.Width * size / 100,
-        r.Height,
-        1
-      );
-      ActiveWindow(foregroundWinHandle);
-    }
-
-    private void centerVerticalMenuItem_Click(object sender, EventArgs e) {
+    private void snapCenterVerticalMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -487,7 +444,41 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void topSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapLeftSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      int size = (int)menuitem.Tag;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left,
+        r.Top,
+        (r.Width * size / 100),
+        r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void snapRightSideMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+      int size = (int)menuitem.Tag;
+      if (foregroundWinHandle == null) { return; }
+      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
+      MoveWindow(
+        foregroundWinHandle,
+        r.Left + r.Width * (100 - size) / 100,
+        r.Top,
+        r.Width * size / 100,
+        r.Height,
+        1
+      );
+      ActiveWindow(foregroundWinHandle);
+    }
+
+    private void snapTopSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -504,7 +495,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void bottomSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapBottomSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -521,7 +512,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void topLeftSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapTopLeftSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -538,7 +529,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void topRightSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapTopRightSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -555,7 +546,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void bottomLeftSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapBottomLeftSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
@@ -572,7 +563,7 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void bottomRightSideMenuItem_Click(object sender, EventArgs e) {
+    private void snapBottomRightSideMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
