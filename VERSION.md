@@ -1,6 +1,6 @@
 ## Version
 
-### 0.13.0
+### 0.14.0
 2025/01/21 Tue
 - tray icon double click to restart
 - change menu item center
