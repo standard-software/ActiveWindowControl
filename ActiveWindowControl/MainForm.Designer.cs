@@ -41,7 +41,6 @@ namespace ActiveWindowControl {
       this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
       this.tasktrayRestartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tasktrayExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.snapWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toOtherMonitorSeparator = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,12 +148,6 @@ namespace ActiveWindowControl {
       this.tasktrayExitMenuItem.Text = "Exit";
       this.tasktrayExitMenuItem.Click += new System.EventHandler(this.tasktrayExitMenuItem_Click);
       // 
-      // snapWindowMenuItem
-      // 
-      this.snapWindowMenuItem.Name = "snapWindowMenuItem";
-      this.snapWindowMenuItem.Size = new System.Drawing.Size(193, 22);
-      this.snapWindowMenuItem.Text = "Snap Window";
-      // 
       // toOtherMonitorSeparator
       // 
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
@@ -176,14 +169,13 @@ namespace ActiveWindowControl {
       // 
       this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.snapWindowMenuItem,
             this.toOtherMonitorSeparator,
             this.moveToPrevMonitorMenuItem,
             this.moveToNextMonitorMenuItem,
             this.toolStripSeparator3,
             this.aboutMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(194, 126);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(194, 104);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
@@ -242,7 +234,6 @@ namespace ActiveWindowControl {
     private System.Windows.Forms.ToolStripMenuItem tasktrayExitMenuItem;
     private System.Windows.Forms.ToolStripMenuItem tasktrayRestartMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-    private System.Windows.Forms.ToolStripMenuItem snapWindowMenuItem;
     private System.Windows.Forms.ToolStripSeparator toOtherMonitorSeparator;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;

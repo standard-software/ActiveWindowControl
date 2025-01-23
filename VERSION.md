@@ -1,5 +1,8 @@
 ## Version
 
+- fix fit window
+- update snap window menu
+
 ### 0.14.0
 2025/01/21 Tue
 - tray icon double click to restart

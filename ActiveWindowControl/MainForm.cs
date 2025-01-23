@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -37,11 +37,11 @@ namespace ActiveWindowControl {
 
       }
       {
-        var fitCornerMenuItem = new ToolStripMenuItem();
-        fitCornerMenuItem.Text = "Fit Window";
-        contextMenuStrip1.Items.Insert(2, fitCornerMenuItem);
-        fitCornerMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        CreateFitCornerMenuItem(fitCornerMenuItem);
+        var fitWindowMenuItem = new ToolStripMenuItem();
+        fitWindowMenuItem.Text = "Fit Window";
+        contextMenuStrip1.Items.Insert(2, fitWindowMenuItem);
+        fitWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        CreateFitCornerMenuItem(fitWindowMenuItem);
 
         separator = new ToolStripSeparator();
         contextMenuStrip1.Items.Insert(3, separator);
@@ -58,61 +58,62 @@ namespace ActiveWindowControl {
         menuItem.Tag = 50;
         menuItem.Click += snapRightSideMenuItem_Click;
         contextMenuStrip1.Items.Insert(5, menuItem);
-
-        separator = new ToolStripSeparator();
-        contextMenuStrip1.Items.Add(separator);
       }
-
       {
+        var snapWindowMenuItem = new ToolStripMenuItem();
+        snapWindowMenuItem.Text = "Snap Window";
+        contextMenuStrip1.Items.Insert(6, snapWindowMenuItem);
         snapWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 50%";
-        menuItem.Tag = 50;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+        {
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 50%";
+          menuItem.Tag = 50;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
 
-        separator = new ToolStripSeparator();
-        snapWindowMenuItem.DropDownItems.Add(separator);
+          separator = new ToolStripSeparator();
+          snapWindowMenuItem.DropDownItems.Add(separator);
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 90%";
-        menuItem.Tag = 90;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 90%";
+          menuItem.Tag = 90;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 70%";
-        menuItem.Tag = 70;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 70%";
+          menuItem.Tag = 70;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 30%";
-        menuItem.Tag = 30;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 30%";
+          menuItem.Tag = 30;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
 
-        var separator2 = new ToolStripSeparator();
-        snapWindowMenuItem.DropDownItems.Add(separator2);
+          var separator2 = new ToolStripSeparator();
+          snapWindowMenuItem.DropDownItems.Add(separator2);
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 75%";
-        menuItem.Tag = 75;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 75%";
+          menuItem.Tag = 75;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
 
-        menuItem = new ToolStripMenuItem();
-        menuItem.Text = "Size 25%";
-        menuItem.Tag = 25;
-        menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        snapWindowMenuItem.DropDownItems.Add(menuItem);
-        CreateSnapSizeMenuItem(menuItem);
+          menuItem = new ToolStripMenuItem();
+          menuItem.Text = "Size 25%";
+          menuItem.Tag = 25;
+          menuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          snapWindowMenuItem.DropDownItems.Add(menuItem);
+          CreateSnapSizeMenuItem(menuItem);
+        }
       }
 
       {
