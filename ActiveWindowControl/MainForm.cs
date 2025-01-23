@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -637,12 +637,11 @@ namespace ActiveWindowControl {
     }
 
     private void fitLeftSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left,
@@ -653,13 +652,13 @@ namespace ActiveWindowControl {
       );
       ActiveWindow(foregroundWinHandle);
     }
+
     private void fitRightSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left + r.Width - (winRect.right - winRect.left),
@@ -672,35 +671,27 @@ namespace ActiveWindowControl {
     }
 
     private void fitTopSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
-      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left,
         r.Top,
         r.Width,
-        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        winRect.bottom - winRect.top,
         1
       );
       ActiveWindow(foregroundWinHandle);
     }
     private void fitBottomSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
-      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left,
@@ -713,48 +704,39 @@ namespace ActiveWindowControl {
     }
 
     private void fitTopLeftSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
-      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left,
         r.Top,
         winRect.right - winRect.left,
-        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        winRect.bottom - winRect.top,
         1
       );
       ActiveWindow(foregroundWinHandle);
     }
     private void fitTopRightSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      int titleBarHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-      int frameHeight = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * 2;
-      int edgeHeight = GetSystemMetrics(SystemMetric.SM_CYEDGE) * 2;
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left + r.Width - (winRect.right - winRect.left),
         r.Top,
         winRect.right - winRect.left,
-        winRect.bottom - winRect.top + titleBarHeight + frameHeight + edgeHeight,
+        winRect.bottom - winRect.top,
         1
       );
       ActiveWindow(foregroundWinHandle);
     }
 
     private void fitBottomLeftSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
       RECT winRect;
@@ -771,12 +753,11 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
     private void fitBottomRightSideMenuItem_Click(object sender, EventArgs e) {
-      ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       if (foregroundWinHandle == null) { return; }
       var targetScreen = GetTargetScreen(foregroundWinHandle);
+      var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
-      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left + r.Width - (winRect.right - winRect.left),
