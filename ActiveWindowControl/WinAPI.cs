@@ -18,6 +18,18 @@ namespace ActiveWindowControl {
     [DllImport("user32.dll")]
     public static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetParent(IntPtr hWnd);
+    
+    [DllImport("user32.dll")]
+    public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+    [DllImport("user32.dll")]
+    public static extern bool AdjustWindowRectEx(ref RECT lpRect, uint dwStyle, bool bMenu, uint dwExStyle);
+
+    public const int GWL_STYLE = -16;
+    public const int GWL_EXSTYLE = -20;
+
     [StructLayout(LayoutKind.Sequential)]
     public struct RECT {
       public int left;
