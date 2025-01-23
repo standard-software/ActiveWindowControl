@@ -2,6 +2,7 @@
 
 - fix fit window
 - update snap window menu
+- ActiveWindowControl window topmost
 
 ### 0.14.0
 2025/01/21 Tue

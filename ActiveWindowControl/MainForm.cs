@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -307,6 +307,7 @@ namespace ActiveWindowControl {
         this.Visible = false;
         SetWindowLong(this.Handle, GWL.HWNDPARENT, (UInt32)foregroundWinHandle);
         this.Visible = true;
+        SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
         ActiveWindow(foregroundWinHandle);
       }
 
