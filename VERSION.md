@@ -3,6 +3,8 @@
 - fix fit window
 - update snap window menu
 - ActiveWindowControl window topmost
+- Changed display menu. 
+  - Enabled specification of multiple displays
 
 ### 0.14.0
 2025/01/21 Tue

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Console;
 
 namespace ActiveWindowControl {
   using static WinAPI;
@@ -117,8 +118,7 @@ namespace ActiveWindowControl {
       }
 
       {
-        moveToPrevMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        moveToNextMonitorMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+        displayMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
       }
 
       {
@@ -379,21 +379,43 @@ namespace ActiveWindowControl {
     }
 
     private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
+      var screens = GetAllScreens();
+      displayMenuItem.DropDownItems.Clear();
 
-      if (Screen.AllScreens.Length == 1) {
-        moveToPrevMonitorMenuItem.Visible = false;
-        moveToNextMonitorMenuItem.Visible = false;
-        toOtherMonitorSeparator.Visible = false;
-      } else if (Screen.AllScreens.Length == 2) {
-        moveToPrevMonitorMenuItem.Visible = false;
-        moveToNextMonitorMenuItem.Visible = true;
-        toOtherMonitorSeparator.Visible = true;
-      } else if (3 <= Screen.AllScreens.Length) {
-        moveToPrevMonitorMenuItem.Visible = true;
-        moveToNextMonitorMenuItem.Visible = true;
-        toOtherMonitorSeparator.Visible = true;
+      if (screens.Length == 1) {
+        displayMenuItem.Visible = false;
+      } else if (screens.Length >= 2) {
+        displayMenuItem.Visible = true;
+
+        var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
+
+        for (int i = 0; i < screens.Length; i++) {
+          var screen = screens[i];
+          string screenName = $"Screen ";
+
+          var centerX = screen.Bounds.Left + screen.Bounds.Width / 2;
+          var centerY = screen.Bounds.Top + screen.Bounds.Height / 2;
+
+          if (screen.Bounds.Top == 0 && screen.Bounds.Left == 0) {
+            screenName += " Center";
+          } else {
+            if (centerY < 0) screenName += " Up";
+            if (centerX < 0) screenName += " Left";
+            if (centerY > screen.Bounds.Height) screenName += " Down";
+            if (centerX > screen.Bounds.Width) screenName += " Right";
+          }
+
+          var screenItem = new ToolStripMenuItem(screenName.Trim());
+          screenItem.Tag = i;
+          screenItem.Click += moveToScreenMenuItem_Click;
+          if (i == currentScreenIndex) {
+            screenItem.Text += " (Current Screen)";
+            screenItem.Enabled = false;
+          }
+
+          displayMenuItem.DropDownItems.Add(screenItem);
+        }
       }
-
     }
 
     private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
@@ -771,14 +793,10 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void moveToSamePositionPrevMonitor(object sender, EventArgs e) {
-      var screens = GetAllScreens();
+    private void moveToSamePositionDisplay(int screenIndex) {
+            var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
-      var prevScreenIndex = currentScreenIndex - 1;
-      if (prevScreenIndex == -1) {
-        prevScreenIndex = screens.Length - 1;
-      }
-      var prevScreen = screens[prevScreenIndex];
+      var targetScreen = screens[screenIndex];
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
@@ -794,7 +812,7 @@ namespace ActiveWindowControl {
       double percentHeight = (double)(rect.bottom - rect.top)
         / (double)(currentScreen.WorkingArea.Height);
 
-      var r = prevScreen.WorkingArea;
+      var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
         r.Left + (int)(r.Width * percentLeft),
@@ -814,61 +832,14 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void moveToSamePositionNextMonitor(object sender, EventArgs e) {
-      var screens = GetAllScreens();
-      var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
-      var nextScreenIndex = currentScreenIndex + 1;
-      if (nextScreenIndex == screens.Length) {
-        nextScreenIndex = 0;
-      }
-      var nextScreen = screens[nextScreenIndex];
-
-      RECT rect;
-      GetWindowRect(foregroundWinHandle, out rect);
-
-      Screen currentScreen = screens[currentScreenIndex];
-      double percentLeft = (double)(rect.left - currentScreen.WorkingArea.Left) / (double)(currentScreen.WorkingArea.Width);
-
-      double percentTop = (double)(rect.top - currentScreen.WorkingArea.Top) / (double)(currentScreen.WorkingArea.Height);
-      double percentWidth = (double)(rect.right - rect.left) / (double)(currentScreen.WorkingArea.Width);
-      double percentHeight = (double)(rect.bottom - rect.top) / (double)(currentScreen.WorkingArea.Height);
-
-      var r = nextScreen.WorkingArea;
-      MoveWindow(
-        foregroundWinHandle,
-        r.Left + (int)(r.Width * percentLeft),
-        r.Top + (int)(r.Height * percentTop),
-        (int)(r.Width * percentWidth),
-        (int)(r.Height * percentHeight),
-        1
-      );
-      MoveWindow(
-        foregroundWinHandle,
-        r.Left + (int)(r.Width * percentLeft),
-        r.Top + (int)(r.Height * percentTop),
-        (int)(r.Width * percentWidth),
-        (int)(r.Height * percentHeight),
-        1
-      );
-
-      ActiveWindow(foregroundWinHandle);
-    }
-
-    private void moveToPrevMonitorMenuItem_Click(object sender, EventArgs e) {
+    private void moveToScreenMenuItem_Click(object sender, EventArgs e) {
+      ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+      int screenIndex = (int)menuItem.Tag;
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
-        moveToSamePositionPrevMonitor(sender, e);
+        moveToSamePositionDisplay(screenIndex);
         SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
       } else {
-        moveToSamePositionPrevMonitor(sender, e);
-      }
-    }
-
-    private void moveToNextMonitorMenuItem_Click(object sender, EventArgs e) {
-      if (GetWindowState(foregroundWinHandle) == "Maximized") {
-        moveToSamePositionNextMonitor(sender, e);
-        SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
-      } else {
-        moveToSamePositionNextMonitor(sender, e);
+        moveToSamePositionDisplay(screenIndex);
       }
     }
 

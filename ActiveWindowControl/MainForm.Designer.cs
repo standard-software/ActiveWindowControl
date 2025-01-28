@@ -45,8 +45,7 @@ namespace ActiveWindowControl {
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.moveToPrevMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.moveToNextMonitorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.displayMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.contextMenuStrip2.SuspendLayout();
       this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -151,17 +150,17 @@ namespace ActiveWindowControl {
       // toOtherMonitorSeparator
       // 
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
-      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(190, 6);
+      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(109, 6);
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(190, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(109, 6);
       // 
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(193, 22);
+      this.aboutMenuItem.Size = new System.Drawing.Size(180, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
@@ -170,28 +169,19 @@ namespace ActiveWindowControl {
       this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
       this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toOtherMonitorSeparator,
-            this.moveToPrevMonitorMenuItem,
-            this.moveToNextMonitorMenuItem,
+            this.displayMenuItem,
             this.toolStripSeparator3,
             this.aboutMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(194, 104);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(181, 82);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
-      // moveToPrevMonitorMenuItem
+      // displayMenuItem
       // 
-      this.moveToPrevMonitorMenuItem.Name = "moveToPrevMonitorMenuItem";
-      this.moveToPrevMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
-      this.moveToPrevMonitorMenuItem.Text = "Move To Prev Monitor";
-      this.moveToPrevMonitorMenuItem.Click += new System.EventHandler(this.moveToPrevMonitorMenuItem_Click);
-      // 
-      // moveToNextMonitorMenuItem
-      // 
-      this.moveToNextMonitorMenuItem.Name = "moveToNextMonitorMenuItem";
-      this.moveToNextMonitorMenuItem.Size = new System.Drawing.Size(193, 22);
-      this.moveToNextMonitorMenuItem.Text = "Move To Next Monitor";
-      this.moveToNextMonitorMenuItem.Click += new System.EventHandler(this.moveToNextMonitorMenuItem_Click);
+      this.displayMenuItem.Name = "displayMenuItem";
+      this.displayMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.displayMenuItem.Text = "Display";
       // 
       // MainForm
       // 
@@ -238,8 +228,7 @@ namespace ActiveWindowControl {
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-    private System.Windows.Forms.ToolStripMenuItem moveToPrevMonitorMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem moveToNextMonitorMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem displayMenuItem;
   }
 }
 
