@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -198,7 +198,7 @@ namespace ActiveWindowControl {
       menuItem.Click += snapCenterHorizontalMenuItem_Click;
       sizeMenuItem.DropDownItems.Add(menuItem);
       menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Center Vertical";
+      menuItem.Text = "Vertical Center";
       menuItem.Tag = sizeMenuItem.Tag;
       menuItem.Click += snapCenterVerticalMenuItem_Click;
       sizeMenuItem.DropDownItems.Add(menuItem);

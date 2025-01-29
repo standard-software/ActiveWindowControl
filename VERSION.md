@@ -1,4 +1,5 @@
 ## Version
+- Update MenuItem Name: -> Vertical Center
 
 ### 0.15.0
 2025/01/29 Wed
