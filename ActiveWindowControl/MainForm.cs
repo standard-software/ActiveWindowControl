@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -243,7 +243,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:0.14.0",
+        "ActiveWindowControl\nVersion:0.15.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
@@ -391,7 +391,7 @@ namespace ActiveWindowControl {
 
         for (int i = 0; i < screens.Length; i++) {
           var screen = screens[i];
-          string screenName = $"Screen ";
+          string screenName = $"Screen";
 
           var centerX = screen.Bounds.Left + screen.Bounds.Width / 2;
           var centerY = screen.Bounds.Top + screen.Bounds.Height / 2;
