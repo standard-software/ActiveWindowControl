@@ -1,5 +1,6 @@
 ## Version
 - Update MenuItem Name: -> Vertical Center
+- Add README & ScreenShot
 
 ### 0.15.0
 2025/01/29 Wed
