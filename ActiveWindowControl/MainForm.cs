@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -18,34 +19,56 @@ namespace ActiveWindowControl {
 
     public IntPtr foregroundWinHandle;
 
+    private List<ToolStripItem> initialContextMenuItems;
+
     private void MainForm_Load(object sender, EventArgs e) {
       this.Top = 0;
       this.Left = 0;
       this.Height = 0;
 
+      initialContextMenuItems = new List<ToolStripItem>();
+      foreach (ToolStripItem item in contextMenuStrip1.Items) {
+        initialContextMenuItems.Add(item);
+      }
+
+      {
+        displayMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
+      }
+
+      {
+        ToolStripProfessionalRenderer renderer = new VS2022MenuRenderer();
+        renderer.RoundedEdges = false;
+        ToolStripManager.Renderer = renderer;
+        ToolStripManager.VisualStylesEnabled = true;
+      }
+
+    }
+    
+    private void CreateFitSnapMenuItem(ToolStripItemCollection menuItems, int screenIndex) {
       ToolStripMenuItem menuItem;
       ToolStripSeparator separator;
-
       {
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Fit Left";
+        menuItem.Tag = screenIndex;
         menuItem.Click += fitLeftSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(0, menuItem);
+        menuItems.Add(menuItem);
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Fit Right";
+        menuItem.Tag = screenIndex;
         menuItem.Click += fitRightSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(1, menuItem);
-
+        menuItems.Add(menuItem);
       }
       {
         var fitWindowMenuItem = new ToolStripMenuItem();
         fitWindowMenuItem.Text = "Fit Window";
-        contextMenuStrip1.Items.Insert(2, fitWindowMenuItem);
+        fitWindowMenuItem.Tag = screenIndex;
+        menuItems.Add(fitWindowMenuItem);
         fitWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-        CreateFitCornerMenuItem(fitWindowMenuItem);
+        CreateFitWindowMenuItem(fitWindowMenuItem);
 
         separator = new ToolStripSeparator();
-        contextMenuStrip1.Items.Insert(3, separator);
+        menuItems.Add(separator);
       }
 
       {
@@ -53,17 +76,17 @@ namespace ActiveWindowControl {
         menuItem.Text = "Snap Left";
         menuItem.Tag = 50;
         menuItem.Click += snapLeftSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(4, menuItem);
+        menuItems.Add(menuItem);
         menuItem = new ToolStripMenuItem();
         menuItem.Text = "Snap Right";
         menuItem.Tag = 50;
         menuItem.Click += snapRightSideMenuItem_Click;
-        contextMenuStrip1.Items.Insert(5, menuItem);
+        menuItems.Add(menuItem);
       }
       {
         var snapWindowMenuItem = new ToolStripMenuItem();
         snapWindowMenuItem.Text = "Snap Window";
-        contextMenuStrip1.Items.Insert(6, snapWindowMenuItem);
+        menuItems.Add(snapWindowMenuItem);
         snapWindowMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
 
         {
@@ -116,18 +139,41 @@ namespace ActiveWindowControl {
           CreateSnapSizeMenuItem(menuItem);
         }
       }
+    }
 
-      {
-        displayMenuItem.DropDownDirection = ToolStripDropDownDirection.Left;
-      }
+    private void CreateFitWindowMenuItem(ToolStripMenuItem sizeMenuItem) {
 
-      {
-        ToolStripProfessionalRenderer renderer = new VS2022MenuRenderer();
-        renderer.RoundedEdges = false;
-        ToolStripManager.Renderer = renderer;
-        ToolStripManager.VisualStylesEnabled = true;
-      }
+      ToolStripMenuItem menuItem;
+      ToolStripSeparator separator;
 
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top";
+      menuItem.Click += fitTopSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom";
+      menuItem.Click += fitBottomSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+
+      separator = new ToolStripSeparator();
+      sizeMenuItem.DropDownItems.Add(separator);
+
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Left";
+      menuItem.Click += fitTopLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Top Right";
+      menuItem.Click += fitTopRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Left";
+      menuItem.Click += fitBottomLeftSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
+      menuItem = new ToolStripMenuItem();
+      menuItem.Text = "Bottom Right";
+      menuItem.Click += fitBottomRightSideMenuItem_Click;
+      sizeMenuItem.DropDownItems.Add(menuItem);
     }
 
     private void CreateSnapSizeMenuItem(ToolStripMenuItem sizeMenuItem) {
@@ -201,42 +247,6 @@ namespace ActiveWindowControl {
       menuItem.Text = "Vertical Center";
       menuItem.Tag = sizeMenuItem.Tag;
       menuItem.Click += snapCenterVerticalMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-
-    }
-
-    private void CreateFitCornerMenuItem(ToolStripMenuItem sizeMenuItem) {
-
-      ToolStripMenuItem menuItem;
-      ToolStripSeparator separator;
-
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top";
-      menuItem.Click += fitTopSideMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom";
-      menuItem.Click += fitBottomSideMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-
-      separator = new ToolStripSeparator();
-      sizeMenuItem.DropDownItems.Add(separator);
-
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top Left";
-      menuItem.Click += fitTopLeftSideMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Top Right";
-      menuItem.Click += fitTopRightSideMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom Left";
-      menuItem.Click += fitBottomLeftSideMenuItem_Click;
-      sizeMenuItem.DropDownItems.Add(menuItem);
-      menuItem = new ToolStripMenuItem();
-      menuItem.Text = "Bottom Right";
-      menuItem.Click += fitBottomRightSideMenuItem_Click;
       sizeMenuItem.DropDownItems.Add(menuItem);
     }
 
@@ -382,6 +392,15 @@ namespace ActiveWindowControl {
       var screens = GetAllScreens();
       displayMenuItem.DropDownItems.Clear();
 
+      contextMenuStrip1.Items.Clear();
+
+      var screenIndex = -1;
+      CreateFitSnapMenuItem(contextMenuStrip1.Items, screenIndex);
+
+      foreach (var item in initialContextMenuItems) {
+        contextMenuStrip1.Items.Add(item);
+      }
+
       if (screens.Length == 1) {
         displayMenuItem.Visible = false;
       } else if (screens.Length >= 2) {
@@ -409,7 +428,7 @@ namespace ActiveWindowControl {
           screenItem.DropDownDirection = ToolStripDropDownDirection.Left;
           var samePositionMenuItem = new ToolStripMenuItem("Same Position");
           samePositionMenuItem.Tag = i;
-          samePositionMenuItem.Click += moveToScreenMenuItem_Click;
+          samePositionMenuItem.Click += samePositionMenuItem_Click;
           screenItem.DropDownItems.Add(samePositionMenuItem);
 
           var separator = new ToolStripSeparator();
@@ -458,9 +477,6 @@ namespace ActiveWindowControl {
     }
 
     private int GetTargetScreenIndex(IntPtr hwnd) {
-      if (GetWindowState(hwnd) == "Maximized") {
-        ShowWindow(hwnd, SW_RESTORE);
-      }
 
       var titlebarHeight = (
          GetSystemMetrics(SystemMetric.SM_CYSIZE) +
@@ -475,16 +491,15 @@ namespace ActiveWindowControl {
       return GetScreenIndexFromPoint(p);
     }
 
-    private Screen GetTargetScreen(IntPtr hwnd) {
-      var screens = GetAllScreens();
-      return screens[GetTargetScreenIndex(hwnd)];
-    }
-
     private void snapCenterScreenMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -501,7 +516,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -518,7 +537,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -535,7 +558,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -552,7 +579,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -569,7 +600,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -586,7 +621,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -603,7 +642,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -620,7 +663,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -637,7 +684,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -654,7 +705,11 @@ namespace ActiveWindowControl {
       ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
       int size = (int)menuitem.Tag;
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       MoveWindow(
         foregroundWinHandle,
@@ -669,7 +724,11 @@ namespace ActiveWindowControl {
 
     private void fitLeftSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -686,7 +745,11 @@ namespace ActiveWindowControl {
 
     private void fitRightSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -703,7 +766,11 @@ namespace ActiveWindowControl {
 
     private void fitTopSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -719,7 +786,11 @@ namespace ActiveWindowControl {
     }
     private void fitBottomSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -736,7 +807,11 @@ namespace ActiveWindowControl {
 
     private void fitTopLeftSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -752,7 +827,11 @@ namespace ActiveWindowControl {
     }
     private void fitTopRightSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -769,7 +848,11 @@ namespace ActiveWindowControl {
 
     private void fitBottomLeftSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
       var r = targetScreen.WorkingArea;
@@ -785,7 +868,11 @@ namespace ActiveWindowControl {
     }
     private void fitBottomRightSideMenuItem_Click(object sender, EventArgs e) {
       if (foregroundWinHandle == null) { return; }
-      var targetScreen = GetTargetScreen(foregroundWinHandle);
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
+      var targetScreen = screens[GetTargetScreenIndex(foregroundWinHandle)];
       var r = targetScreen.WorkingArea;
       RECT winRect;
       GetWindowRect(foregroundWinHandle, out winRect);
@@ -801,7 +888,11 @@ namespace ActiveWindowControl {
     }
 
     private void moveToSamePositionDisplay(int screenIndex) {
-            var screens = GetAllScreens();
+      if (foregroundWinHandle == null) { return; }
+      if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+      }
+      var screens = GetAllScreens();
       var currentScreenIndex = GetTargetScreenIndex(foregroundWinHandle);
       var targetScreen = screens[screenIndex];
 
@@ -839,10 +930,12 @@ namespace ActiveWindowControl {
       ActiveWindow(foregroundWinHandle);
     }
 
-    private void moveToScreenMenuItem_Click(object sender, EventArgs e) {
+    private void samePositionMenuItem_Click(object sender, EventArgs e) {
       ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
       int screenIndex = (int)menuItem.Tag;
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
+        ShowWindow(foregroundWinHandle, SW_RESTORE);
+        
         moveToSamePositionDisplay(screenIndex);
         SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
       } else {
