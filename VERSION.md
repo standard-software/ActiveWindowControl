@@ -1,5 +1,8 @@
 ## Version
 
+- Add Display SubMenu
+  - Same Position
+
 ### 0.15.1
 2025/01/29 Wed
 - Update MenuItem Name: -> Vertical Center

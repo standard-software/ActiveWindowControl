@@ -406,10 +406,17 @@ namespace ActiveWindowControl {
           }
 
           var screenItem = new ToolStripMenuItem(screenName.Trim());
-          screenItem.Tag = i;
-          screenItem.Click += moveToScreenMenuItem_Click;
+          screenItem.DropDownDirection = ToolStripDropDownDirection.Left;
+          var samePositionMenuItem = new ToolStripMenuItem("Same Position");
+          samePositionMenuItem.Tag = i;
+          samePositionMenuItem.Click += moveToScreenMenuItem_Click;
+          screenItem.DropDownItems.Add(samePositionMenuItem);
+
+          var separator = new ToolStripSeparator();
+          screenItem.DropDownItems.Add(separator);
+
           if (i == currentScreenIndex) {
-            screenItem.Text += " (Current Screen)";
+            screenItem.Text += " - Current Screen";
             screenItem.Enabled = false;
           }
 
