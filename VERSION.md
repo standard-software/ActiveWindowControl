@@ -2,6 +2,7 @@
 
 - Add Display SubMenu
   - Same Position
+  - Fit / Snap
 
 ### 0.15.1
 2025/01/29 Wed
