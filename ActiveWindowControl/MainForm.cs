@@ -267,12 +267,12 @@ namespace ActiveWindowControl {
     }
 
     private async void notifyIcon1_Click(object sender, EventArgs e) {
-      //System.Console.WriteLine("notifyIcon1_Click " + this.contextMenuStrip2.Visible.ToString());
+      // WriteLine("notifyIcon1_Click " + this.contextMenuStrip2.Visible.ToString());
       if (this.contextMenuStrip2.Visible) {
-        //System.Console.WriteLine("notifyIcon1_Click Hide");
+        // WriteLine("notifyIcon1_Click Hide");
         this.contextMenuStrip2.Hide();
       } else {
-        //System.Console.WriteLine("notifyIcon1_Click Show");
+        // WriteLine("notifyIcon1_Click Show");
         this.contextMenuStrip2.Show(
           Cursor.Position,
           ToolStripDropDownDirection.AboveRight
@@ -304,6 +304,7 @@ namespace ActiveWindowControl {
 
     private void timer1_Tick(object sender, EventArgs e) {
       IntPtr _foregroundWinHandle = WinAPI.GetForegroundWindow();
+      WriteLine($"foregroundWinHandle: {_foregroundWinHandle}, {foregroundWinHandle}");
 
       if (!IsThickFrame(_foregroundWinHandle)) { return; }
 
@@ -323,6 +324,7 @@ namespace ActiveWindowControl {
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
+      WriteLine($"foreground Window Rect: Left={rect.left}, Top={rect.top}, Right={rect.right}, Bottom={rect.bottom}");
 
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
         var SM_CYSIZEFRAME = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
@@ -330,8 +332,7 @@ namespace ActiveWindowControl {
         rect.bottom = rect.bottom + SM_CYSIZEFRAME - 1;
         rect.right -= 2;
       }
-      //System.Console.WriteLine(GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME));
-      //System.Console.WriteLine(GetSystemMetrics(SystemMetric.SM_CXSIZE));
+      // WriteLine($"{GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME)} {GetSystemMetrics(SystemMetric.SM_CXSIZE)}" );
 
       this.Top = rect.top + 1;
 
@@ -355,6 +356,8 @@ namespace ActiveWindowControl {
         GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) + 1
       ) / 2;
       
+      WriteLine($"this rect: Left={this.Left}, Top={this.Top}, Height={this.Height}, Width={this.Width}");
+
 
       if (this.Bounds.Contains(Cursor.Position)) {
         this.Opacity = 0.8;
@@ -944,7 +947,7 @@ namespace ActiveWindowControl {
     }
 
     private void contextMenuStrip2_Closed(object sender, ToolStripDropDownClosedEventArgs e) {
-      //System.Console.WriteLine("contextMenuStrip2_Closed");
+      // WriteLine("contextMenuStrip2_Closed");
       contextMenuStrip2.Visible = false;
     }
 
