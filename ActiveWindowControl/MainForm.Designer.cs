@@ -118,49 +118,49 @@ namespace ActiveWindowControl {
             this.tasktrayRestartMenuItem,
             this.tasktrayExitMenuItem});
       this.contextMenuStrip2.Name = "contextMenuStrip2";
-      this.contextMenuStrip2.Size = new System.Drawing.Size(140, 106);
+      this.contextMenuStrip2.Size = new System.Drawing.Size(111, 76);
       this.contextMenuStrip2.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip2_Closed);
       // 
       // tasktrayAboutMenuItem
       // 
       this.tasktrayAboutMenuItem.Name = "tasktrayAboutMenuItem";
-      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(139, 32);
+      this.tasktrayAboutMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayAboutMenuItem.Text = "About";
       this.tasktrayAboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
       // toolStripMenuItem3
       // 
       this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-      this.toolStripMenuItem3.Size = new System.Drawing.Size(136, 6);
+      this.toolStripMenuItem3.Size = new System.Drawing.Size(107, 6);
       // 
       // tasktrayRestartMenuItem
       // 
       this.tasktrayRestartMenuItem.Name = "tasktrayRestartMenuItem";
-      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(139, 32);
+      this.tasktrayRestartMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayRestartMenuItem.Text = "Restart";
       this.tasktrayRestartMenuItem.Click += new System.EventHandler(this.tasktrayRestartMenuItem_Click);
       // 
       // tasktrayExitMenuItem
       // 
       this.tasktrayExitMenuItem.Name = "tasktrayExitMenuItem";
-      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(139, 32);
+      this.tasktrayExitMenuItem.Size = new System.Drawing.Size(110, 22);
       this.tasktrayExitMenuItem.Text = "Exit";
       this.tasktrayExitMenuItem.Click += new System.EventHandler(this.tasktrayExitMenuItem_Click);
       // 
       // toOtherMonitorSeparator
       // 
       this.toOtherMonitorSeparator.Name = "toOtherMonitorSeparator";
-      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(139, 6);
+      this.toOtherMonitorSeparator.Size = new System.Drawing.Size(109, 6);
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(109, 6);
       // 
       // aboutMenuItem
       // 
       this.aboutMenuItem.Name = "aboutMenuItem";
-      this.aboutMenuItem.Size = new System.Drawing.Size(142, 32);
+      this.aboutMenuItem.Size = new System.Drawing.Size(112, 22);
       this.aboutMenuItem.Text = "About";
       this.aboutMenuItem.Click += new System.EventHandler(this.aboutActiveWindowControlMenuItem_Click);
       // 
@@ -173,29 +173,29 @@ namespace ActiveWindowControl {
             this.toolStripSeparator3,
             this.aboutMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(143, 80);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(113, 60);
       this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
       this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
       // 
       // displayMenuItem
       // 
       this.displayMenuItem.Name = "displayMenuItem";
-      this.displayMenuItem.Size = new System.Drawing.Size(142, 32);
+      this.displayMenuItem.Size = new System.Drawing.Size(112, 22);
       this.displayMenuItem.Text = "Display";
       // 
       // MainForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-      this.ClientSize = new System.Drawing.Size(128, 93);
+      this.ClientSize = new System.Drawing.Size(77, 62);
       this.ContextMenuStrip = this.contextMenuStrip1;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-      this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
       this.Name = "MainForm";
       this.ShowInTaskbar = false;
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
       this.Text = "Form1";
+      this.TopMost = true;
       this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.Leave += new System.EventHandler(this.MainForm_Leave);

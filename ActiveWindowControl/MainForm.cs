@@ -310,27 +310,20 @@ namespace ActiveWindowControl {
 
     private void timer1_Tick(object sender, EventArgs e) {
       IntPtr _foregroundWinHandle = WinAPI.GetForegroundWindow();
-      WriteLine($"foregroundWinHandle: {_foregroundWinHandle}, {foregroundWinHandle}");
+      // WriteLine($"foregroundWinHandle: {_foregroundWinHandle}, {foregroundWinHandle}");
 
       if (!IsThickFrame(_foregroundWinHandle)) { return; }
 
       if (foregroundWinHandle != _foregroundWinHandle) {
-        //this.contextMenuStrip1.Tag = null;
         if (this.Handle == _foregroundWinHandle) {
           return;
         }
         foregroundWinHandle = _foregroundWinHandle;
-
-        this.Visible = false;
-        SetWindowLong(this.Handle, GWL.HWNDPARENT, (UInt32)foregroundWinHandle);
-        this.Visible = true;
-        SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-        ActiveWindow(foregroundWinHandle);
       }
 
       RECT rect;
       GetWindowRect(foregroundWinHandle, out rect);
-      WriteLine($"foreground Window Rect: Left={rect.left}, Top={rect.top}, Right={rect.right}, Bottom={rect.bottom}");
+      // WriteLine($"foreground Window Rect: Left={rect.left}, Top={rect.top}, Right={rect.right}, Bottom={rect.bottom}");
 
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
         var SM_CYSIZEFRAME = GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME);
@@ -362,7 +355,8 @@ namespace ActiveWindowControl {
         GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) + 1
       ) / 2;
       
-      WriteLine($"this rect: Left={this.Left}, Top={this.Top}, Height={this.Height}, Width={this.Width}");
+      // WriteLine($"this rect: Left={this.Left}, Top={this.Top}, Height={this.Height}, Width={this.Width}");
+      // WriteLine($"this visible:{this.Visible} opacity:{this.Opacity} IsWindowVisible:{IsWindowVisible(foregroundWinHandle)}");
 
 
       if (this.Bounds.Contains(Cursor.Position)) {
@@ -913,7 +907,6 @@ namespace ActiveWindowControl {
       int screenIndex = (int)menuItem.Tag;
       if (GetWindowState(foregroundWinHandle) == "Maximized") {
         ShowWindow(foregroundWinHandle, SW_RESTORE);
-        
         moveToSamePositionDisplay(screenIndex);
         SendMessage(foregroundWinHandle, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
       } else {
