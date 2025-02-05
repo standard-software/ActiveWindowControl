@@ -4,6 +4,7 @@
   - Same Position
   - Fit / Snap
 - Update: Disabled the setting of the Parent window in the foreground.
+- UPdate: README
 
 ### 0.15.1
 2025/01/29 Wed

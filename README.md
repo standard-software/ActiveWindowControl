@@ -50,18 +50,22 @@ Screen Center / Horizontal Center / Vertical Center also determine the width and
 
 ### Display
 
-![](README/README_2025-01-29_10-21-26.png)
+![](README/README_2025-02-06_01-01-46.png)
 
-The Display menu allows you to move the screen.
+The Display menu allows you to move screens around.
 
-This menu is displayed when using two or more screens.
+This menu appears when you are using two or more displays.
 
-Displays are arranged from left to right and top to bottom. (The order does not match the Windows settings number)
+Displays are sorted from left to right, up to down. (The order does not match the numbering of the Windows settings.)
 
-The main display is Screen Center.
-Those on the left are displayed as Screen Left / Screen Left Up / Screen Left Down, etc.
+The main display is the Screen Center.
+The one on the left will be labeled Screen Left / Screen Left Up / Screen Left Down, etc.
 
-The window where the current application is displayed is not a target for movement, so it becomes Disabled.
+The window displaying the current application is disabled because it is not the target of the move.
+
+Same Position allows you to move to another display while maintaining the current window's proportionate position on the display.
+
+Snap and Fit are for the target display, respectively.
 
 ### About
 
@@ -80,4 +84,14 @@ Clicking the tray icon, either left or right click, displays the menu.
 About displays information.
 Restart restarts ActiveWindowControl.
 Exit closes ActiveWindowControl.
+
+## Info
+
+standard-software/ActiveWindowControl  
+https://github.com/standard-software/ActiveWindowControl/tree/main
+
+## Contact
+
+standard.software.net@gmail.com  
+  Japanese / English
 
