@@ -1,5 +1,6 @@
 ## Version
 
+### 1.0.0
 - Add Display SubMenu
   - Same Position
   - Fit / Snap
