@@ -1,11 +1,13 @@
 ## Version
 
+- Update: Fixed closing menu when switching active window
+
 ### 1.0.0
 - Add Display SubMenu
   - Same Position
   - Fit / Snap
 - Update: Disabled the setting of the Parent window in the foreground.
-- UPdate: README
+- Update: README
 
 ### 0.15.1
 2025/01/29 Wed

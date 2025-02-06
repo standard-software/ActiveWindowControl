@@ -319,6 +319,8 @@ namespace ActiveWindowControl {
           return;
         }
         foregroundWinHandle = _foregroundWinHandle;
+
+        contextMenuStrip1.Close();
       }
 
       RECT rect;
