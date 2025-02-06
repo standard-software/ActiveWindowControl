@@ -1,5 +1,6 @@
 ## Version
 
+### 1.1.0
 - Update: Fixed closing menu when switching active window
 
 ### 1.0.0

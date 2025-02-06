@@ -259,7 +259,7 @@ namespace ActiveWindowControl {
     private void aboutActiveWindowControlMenuItem_Click(object sender, EventArgs e) {
       timer1.Enabled = false;
       MessageBox.Show(
-        "ActiveWindowControl\nVersion:1.0.0",
+        "ActiveWindowControl\nVersion:1.1.0",
         "About",
         MessageBoxButtons.OK,
          MessageBoxIcon.Information
