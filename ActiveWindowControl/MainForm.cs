@@ -372,12 +372,6 @@ namespace ActiveWindowControl {
             if (this.contextMenuStrip1.Tag == null) {
               this.Activate();
 
-              // // BelowRight
-              // this.contextMenuStrip1.Show(
-              //   new Point(this.Left, this.Bottom)
-              // );
-
-              // BelowLeft
               this.contextMenuStrip1.Show(
                 new Point(this.Right, this.Bottom),
                 ToolStripDropDownDirection.BelowLeft
